@@ -1,0 +1,8 @@
+BANK
+002
+00-44
+10/12/2005
+200
+ 3/ 3/2014 15:45:05 withdrawal_from_ATM -333.33
+ 3/ 3/2014 15:44:49 withdrawal_from_ATM -12.5
+ 1/ 3/2014 15:44:24 deposit_to_ATM 150
