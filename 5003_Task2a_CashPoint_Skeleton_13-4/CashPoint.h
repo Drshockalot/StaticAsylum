@@ -46,6 +46,8 @@ private:
     void m3_depositToBankAccount();
     //option 4
     void m4_produceStatement() const;
+	//option 5
+	void m5_showAllDepositTransactions() const;
 
     //support file handling functions & creation of dynamic objects
     bool canOpenFile( const string&) const;

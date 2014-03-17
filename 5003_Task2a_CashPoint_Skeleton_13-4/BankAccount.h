@@ -33,7 +33,8 @@ public:
 	double getBalance() const;
     const TransactionList getTransactions() const;
     bool	isEmptyTransactionList() const;
-
+	const void produceAllDepositTransactions(string&, double&) const;
+	void showAllDepositsOnScreen(bool&, string&, double&) const;
 	//functions to put data into and get data from streams
 	ostream& putDataInStream( ostream& os) const;
 	istream& getDataFromStream( istream& is);

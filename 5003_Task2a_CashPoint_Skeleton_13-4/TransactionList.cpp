@@ -68,6 +68,17 @@ istream& TransactionList::getDataFromStream( istream& is) {
 	return is;
 }
 
+void TransactionList::getAllDepositTransactions()
+{
+	TransactionList copy(*this);
+	TransactionList temp;
+	while (copy.size() > 0)
+	
+		if(copy.newestTransaction.getAmount() > 0)
+			temp.addTransaction(newestTransaction);
+	}
+copy.deleteFirstTransaction();
+}
 
 //---------------------------------------------------------------------------
 //non-member operator functions
