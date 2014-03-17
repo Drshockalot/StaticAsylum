@@ -55,6 +55,18 @@ bool BankAccount::isEmptyTransactionList() const {
 	return transactions_.size() == 0;
 }
 
+const void BankAccount::produceAllDepositTransactions(string& s, double& d) const
+{
+	TransactionList trl(transactions_.getAllDepositTransactions());
+	d = trl.getTotalTransactions();
+	s = trl.toFormattedString();
+}
+
+void BankAccount::showAllDepositsOnScreen(bool& b, string& s, double& d) const
+{
+
+}
+
 void BankAccount::recordDeposit( double amountToDeposit) {
     //create a deposit transaction
 	Transaction aTransaction( "deposit_to_ATM", amountToDeposit);
