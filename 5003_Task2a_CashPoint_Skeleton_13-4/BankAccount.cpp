@@ -55,7 +55,7 @@ bool BankAccount::isEmptyTransactionList() const {
 	return transactions_.size() == 0;
 }
 
-const void BankAccount::produceAllDepositTransactions(string& s, double& d) const
+void BankAccount::produceAllDepositTransactions(string& s, double& d)
 {
 	TransactionList trl(transactions_.getAllDepositTransactions());
 	d = trl.getTotalTransactions();

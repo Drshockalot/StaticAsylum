@@ -80,6 +80,11 @@ void TransactionList::getAllDepositTransactions()
 copy.deleteFirstTransaction();
 }
 
+int TransactionList::getTotalTransactions() const
+{
+
+}
+
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------
