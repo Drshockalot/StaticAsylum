@@ -19,12 +19,13 @@ public:
 
 	void   addNewTransaction( const Transaction&);
     const Transaction newestTransaction() const;
-    const  TransactionList olderTransactions() const;
+    const TransactionList olderTransactions() const;
     void   deleteFirstTransaction();
     void   deleteGivenTransaction( const Transaction&);
 	int    size() const;
 	void getAllDepositTransactions();
 	int getTotalTransactions() const;
+	void addTransaction();
 
 	const string toFormattedString() const;		//return transactionlist as a (formatted) string
 	ostream& putDataInStream( ostream& os) const;	//send TransactionList info into an output stream

@@ -34,7 +34,7 @@ public:
     const TransactionList getTransactions() const;
     bool	isEmptyTransactionList() const;
 	void produceAllDepositTransactions(string&, double&);
-	void showAllDepositsOnScreen(bool&, string&, double&);
+	void showAllDepositsOnScreen(bool& b, string& s, double& d) const;
 	//functions to put data into and get data from streams
 	ostream& putDataInStream( ostream& os) const;
 	istream& getDataFromStream( istream& is);

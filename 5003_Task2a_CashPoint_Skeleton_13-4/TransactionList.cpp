@@ -19,7 +19,7 @@ void TransactionList::addNewTransaction( const Transaction& tr) {
 const Transaction TransactionList::newestTransaction() const {
     return (listOfTransactions_.first());
 }
-const TransactionList TransactionList::olderTransactions() const {
+const TransactionList TransactionList::olderTransactions() const{
 	TransactionList trlist( *this);
     trlist.deleteFirstTransaction();
     return trlist;
@@ -28,7 +28,16 @@ void TransactionList::deleteFirstTransaction() {
     listOfTransactions_.deleteFirst();
 }
 void TransactionList::deleteGivenTransaction( const Transaction& tr) {
-    listOfTransactions_.deleteOne( tr);
+    assert(size() != 0);
+	if (newestTransaction() == tr)
+		*this = olderTransactions();
+	else
+	{
+		Transaction firstTr(newestTransaction());
+		olderTransactions().deleteGivenTransaction(tr);
+		this->addNewTransaction(firstTr);
+	}
+
 }
 int TransactionList::size() const {
     return (listOfTransactions_.length());
@@ -73,7 +82,7 @@ void TransactionList::getAllDepositTransactions()
 	TransactionList copy(*this);
 	TransactionList temp;
 	while (copy.size() > 0)
-	
+	{
 		if(copy.newestTransaction.getAmount() > 0)
 			temp.addTransaction(newestTransaction);
 	}
