@@ -39,9 +39,10 @@ public:
     void	showDepositOnScreen( bool auth, double deposit) const;
     void	showWithdrawalOnScreen( bool auth, double withdrawal) const;
     void	showStatementOnScreen( const string&) const;
+	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
 
 private:
-    //support functions
+    //support functions 
 	void	showCardIdentificationMenu() const;
 	void	showAccountProcessingMenu() const;
     int		readInCommand() const;

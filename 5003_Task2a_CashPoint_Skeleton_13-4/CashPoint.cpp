@@ -141,6 +141,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 4:	m4_produceStatement();
 				break;
+		case 5: m5_showAllDepositTransactions();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -174,11 +176,10 @@ void CashPoint::m4_produceStatement() const {
 void CashPoint::m5_showAllDepositTransactions() const 
 {
 	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
-	string str;
-	double total;
+	string str = "";
+	double total = 0.0;
 	if(!noTransaction)
 		p_theActiveAccount_->produceAllDepositTransactions(str, total);
-
 	theUI_.showAllDepositsOnScreen(noTransaction, str, total);
 }
 

@@ -2,7 +2,8 @@
 //OOP Assignment Semester 2
 
 #include "UserInterface.h" 
-
+#include "Date.h"
+#include "Time.h"
 //---------------------------------------------------------------------------
 //UserInterface: class implementation
 //---------------------------------------------------------------------------
@@ -49,7 +50,7 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       2                Withdraw from account";
 	cout << "\n       3                 Deposit into account";
 	cout << "\n       4                       Show statement";
-	cout << "\n       5                    Show all deposits  //TO BE IMPLEMENTED IN TUTORIAL";
+	cout << "\n       5                    Show all deposits";
 	cout << "\n       6                  Show mini statement  //TO BE IMPLEMENTED FOR ASS 2";
 	cout << "\n       7    Show all transations above amount  //TO BE IMPLEMENTED FOR ASS 2";
 	cout << "\n       8    Clear all transactions up to date  //TO BE IMPLEMENTED FOR ASS 2";
@@ -191,4 +192,17 @@ double UserInterface::readInPositiveAmount() const {
 		cin >> amount;
 	}
     return amount;
+}
+void UserInterface::showAllDepositsOnScreen(bool noTransaction, string str, double total) const
+{
+	if(!noTransaction)
+	{
+	cout << "\nALL DEPOSIT TRANSACTIONS REQUESTED AT " << Time::currentTime() << "ON" << Date::currentDate();
+	cout << "\n" << str;
+	cout << "\n" << "Total amount of deposits: " << "\234" << total;
+	}
+	else
+	{
+		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
+	}
 }

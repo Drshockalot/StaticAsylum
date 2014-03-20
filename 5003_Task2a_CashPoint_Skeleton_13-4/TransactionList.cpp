@@ -34,7 +34,9 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 	else
 	{
 		Transaction firstTr(newestTransaction());
-		olderTransactions().deleteGivenTransaction(tr);
+			TransactionList trlist( *this);
+			trlist.deleteFirstTransaction();
+		trlist.deleteGivenTransaction(tr);
 		this->addNewTransaction(firstTr);
 	}
 
@@ -77,23 +79,35 @@ istream& TransactionList::getDataFromStream( istream& is) {
 	return is;
 }
 
-void TransactionList::getAllDepositTransactions()
+TransactionList TransactionList::getAllDepositTransactions()
 {
 	TransactionList copy(*this);
 	TransactionList temp;
 	while (copy.size() > 0)
 	{
-		if(copy.newestTransaction.getAmount() > 0)
-			temp.addTransaction(newestTransaction);
+		if(copy.newestTransaction().getAmount() > 0)
+			temp.addTransaction(copy.newestTransaction());
+		copy.deleteFirstTransaction();
 	}
-copy.deleteFirstTransaction();
+	return temp;
 }
 
-int TransactionList::getTotalTransactions() const
+double TransactionList::getTotalTransactions() const
 {
+	double total = 0.0;
+	TransactionList copy(*this);
+	for(int i = 0 ; i < size() ; ++i)
+	{
+		total += copy.newestTransaction().getAmount();
+		copy.deleteFirstTransaction();
+	}
 
+	return total;
 }
-
+void TransactionList::addTransaction(const Transaction tr)
+{
+	listOfTransactions_.addAtEnd(tr);
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------
