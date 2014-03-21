@@ -41,6 +41,7 @@ public:
 
 	//other operations
 	const string prepareFormattedStatement() const;
+	const string prepareFormattedMiniStatement(int numOfTr) const;
 
     void recordDeposit( double amount);
 
@@ -63,6 +64,7 @@ private:
 	//support functions
 	void updateBalance( double amount);
 	const string prepareFormattedAccountDetails() const;
+	const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 };
 
 //---------------------------------------------------------------------------

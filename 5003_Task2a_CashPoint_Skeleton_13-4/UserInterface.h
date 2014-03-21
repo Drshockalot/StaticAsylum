@@ -34,11 +34,13 @@ public:
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
+	int		getNumberOfTransactions() const;
 
     void	showProduceBalanceOnScreen( double bal) const;
     void	showDepositOnScreen( bool auth, double deposit) const;
     void	showWithdrawalOnScreen( bool auth, double withdrawal) const;
     void	showStatementOnScreen( const string&) const;
+	void	showMiniStatementOnScreen(const string&) const;
 	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
 
 private:

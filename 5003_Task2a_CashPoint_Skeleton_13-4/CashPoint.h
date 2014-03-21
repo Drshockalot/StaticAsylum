@@ -48,6 +48,8 @@ private:
     void m4_produceStatement() const;
 	//option 5
 	void m5_showAllDepositTransactions() const;
+	//option 6
+	void m6_showMiniStatement() const;
 
     //support file handling functions & creation of dynamic objects
     bool canOpenFile( const string&) const;

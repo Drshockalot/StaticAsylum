@@ -135,6 +135,11 @@ double UserInterface::readInDepositAmount() const {
     cout << "\nAMOUNT TO DEPOSIT: \234" ;
 	return ( readInPositiveAmount());
 }
+int UserInterface::getNumberOfTransactions() const 
+{
+	cout << "\nNUMBER OF TRANSACTIONS : ";
+	return ( readInPositiveAmount());
+}
 //output functions
 
 void UserInterface::showProduceBalanceOnScreen( double balance) const {
@@ -162,6 +167,14 @@ void UserInterface::showStatementOnScreen( const string& statement) const {
     cout << "\n________ ACCOUNT STATEMENT _____";
 	cout << statement;
     cout << "\n________ END ACCOUNT STATEMENT _____";
+}
+
+void UserInterface::showMiniStatementOnScreen(const string& miniStatement) const
+{
+	cout << "\nPREPARING MINI STATEMENT...";
+	cout << "\n________ ACCOUNT MINI STATEMENT _____";
+	cout << miniStatement;
+	cout << "\n________ END ACCOUNT MINI STATEMENT _____";
 }
 
 //---------------------------------------------------------------------------

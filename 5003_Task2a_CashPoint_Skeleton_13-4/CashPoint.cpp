@@ -143,6 +143,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 5: m5_showAllDepositTransactions();
 				break;
+		case 6: m6_showMiniStatement();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -181,6 +183,12 @@ void CashPoint::m5_showAllDepositTransactions() const
 	if(!noTransaction)
 		p_theActiveAccount_->produceAllDepositTransactions(str, total);
 	theUI_.showAllDepositsOnScreen(noTransaction, str, total);
+}
+
+void CashPoint::m6_showMiniStatement() const
+{
+	int	numOfTr = theUI_.getNumberOfTransactions();
+	theUI_.showMiniStatementOnScreen(p_theActiveAccount_->prepareFormattedMiniStatement(numOfTr));
 }
 
 //------private file functions
