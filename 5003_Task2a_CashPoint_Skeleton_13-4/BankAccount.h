@@ -65,6 +65,7 @@ private:
 	void updateBalance( double amount);
 	const string prepareFormattedAccountDetails() const;
 	const string prepareFormattedMiniAccountDetails(int numOfTr) const;
+	const TransactionList getRequestedNumberOfTransactions(int numOfTr) const;
 };
 
 //---------------------------------------------------------------------------

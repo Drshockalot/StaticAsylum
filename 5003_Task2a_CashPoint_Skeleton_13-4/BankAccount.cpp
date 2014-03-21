@@ -109,12 +109,28 @@ const string BankAccount::prepareFormattedMiniStatement(int numOfTr) const
 	ostringstream os;
 
 	os << prepareFormattedMiniAccountDetails(numOfTr);
-	
+	TransactionList tr = getRequestedNumberOfTransactions(numOfTr);
 	if ( ! transactions_.size() == 0)
-		os << "\n\nLIST OF TRANSACTIONS \n"	<< transactions_.toFormattedString();	//one per line
+		os << "\n\nLIST OF TRANSACTIONS\n" << tr.toFormattedString();	//one per line
 	else
 		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
 	return ( os.str());
+}
+
+const TransactionList BankAccount::getRequestedNumberOfTransactions(int numOfTr) const
+{
+	TransactionList copy(getTransactions());
+	TransactionList temp;
+	for(int i = 0 ; i < numOfTr ; ++i)
+	{
+		if(copy.size() > 0)
+		{
+			temp.addTransaction(copy.newestTransaction());
+			copy.deleteFirstTransaction();
+		}
+
+	}
+	return temp;
 }
 
 void BankAccount::readInBankAccountFromFile( const string& fileName) {
@@ -182,22 +198,12 @@ const string BankAccount::prepareFormattedAccountDetails() const {
 const string BankAccount::prepareFormattedMiniAccountDetails(int numOfTr) const
 {
 	ostringstream os;
-	TransactionList copy(getTransactions());
 	os << "\nACCOUNT TYPE:    " << accountType_ << " ACCOUNT";						//display account type
 	os << "\nACCOUNT NUMBER:  " << accountNumber_;									//display account number
 	os << "\nSORT CODE:       " << sortCode_;										//display sort code
 	os << "\nCREATION DATE:   " << creationDate_.toFormattedString();				//display creation date
 	os << fixed << setprecision(2) << setfill(' ');
 	os << "\nBALANCE:         \234" << setw(10) << balance_;	//display balance
-	os << "\nLAST " << numOfTr << "TRANSACTIONS: ";
-	for(int i = 0 ; i < numOfTr ; ++i)
-	{
-		if(copy.size() > 0 && copy.newestTransaction().getAmount() > 0)
-		{
-			os << "\n" << copy.newestTransaction();
-			copy.deleteFirstTransaction();
-		}
-	}
 	return os.str();
 }
 
