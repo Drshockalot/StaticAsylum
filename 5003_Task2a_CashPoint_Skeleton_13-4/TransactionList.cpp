@@ -134,6 +134,57 @@ void TransactionList::addTransaction(const Transaction tr)
 {
 	listOfTransactions_.addAtEnd(tr);
 }
+TransactionList TransactionList::getTransactionsForAmount(const double amount)
+{
+	TransactionList copy(*this);
+	TransactionList temp;
+	for(int i = 0 ; i < (*this).size() ; ++i)
+	{
+		if(copy.size() > 0)
+		{
+			if(copy.newestTransaction().getAmount() == amount)
+			{
+				temp.addTransaction(copy.newestTransaction());
+			}
+			copy.deleteFirstTransaction();
+		}
+	}
+	return temp;
+}
+TransactionList TransactionList::getTransactionsForTitle(const string title)
+{
+	TransactionList copy(*this);
+	TransactionList temp;
+	for(int i = 0 ; i < (*this).size() ; ++i)
+	{
+		if(copy.size() > 0)
+		{
+			if(copy.newestTransaction().getTitle() == title)
+			{
+				temp.addTransaction(copy.newestTransaction());
+			}
+			copy.deleteFirstTransaction();
+		}
+	}
+	return temp;
+}
+TransactionList TransactionList::getTransactionsForDate(Date date)
+{
+	TransactionList copy(*this);
+	TransactionList temp;
+	for(int i = 0 ; i < (*this).size() ; ++i)
+	{
+		if(copy.size() > 0)
+		{
+			if(copy.newestTransaction().getDate() == date)
+			{
+				temp.addTransaction(copy.newestTransaction());
+			}
+			copy.deleteFirstTransaction();
+		}
+	}
+	return temp;
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

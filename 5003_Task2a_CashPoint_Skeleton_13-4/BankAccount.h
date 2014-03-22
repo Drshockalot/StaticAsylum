@@ -55,6 +55,9 @@ public:
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;
 
+	string m7a_showTransactionsForAmount(double amount); //lukes question 7
+	string m7b_showTransactionsForTitle(string title);   //
+	string m7c_showTransactionsForDate(Date date);     //
 private:
     //data items
     string accountType_;

@@ -49,6 +49,13 @@ public:
 	void	showTransactionsUpToDateOnScreen(const bool& noTransactions, const Date& d, const int& numOfTr, const string& str) const;
 	Date	readInValidDate(const Date& date) const;
 
+	void	showNoTransactionsOnScreen() const;
+	void	showSearchMenu() const;
+	int		readInSearchCommand() const;
+	double	readInSearchAmount() const; //needs to be template
+	string  readInSearchString() const;
+	Date readInSearchDate() const;
+	void	showMatchingTransactionsOnScreen( const string& results) const;
 private:
     //support functions 
 	void	showCardIdentificationMenu() const;
