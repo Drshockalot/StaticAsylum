@@ -145,6 +145,7 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 6: m6_showMiniStatement();
 				break;
+		case 7: m7_searchForTransaction();
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
