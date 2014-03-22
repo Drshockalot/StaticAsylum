@@ -103,6 +103,14 @@ const string UserInterface::readInAccountToBeProcessed( string& anAccountNumber,
     return( FILEPATH + "account_" + anAccountNumber + "_" + aSortCode + ".txt");
 }
 
+Date UserInterface::getDateFromUser() const
+{
+	Date date;
+	cout << "ENTER DATE: ";
+	cin >> date;
+	return date;
+}
+
 void UserInterface::showValidateAccountOnScreen( int validCode, const string& accNum, const string& srtCode) const {
     switch( validCode)
     {

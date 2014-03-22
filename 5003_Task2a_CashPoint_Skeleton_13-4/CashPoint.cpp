@@ -146,6 +146,9 @@ void CashPoint::performAccountProcessingCommand( int option) {
 		case 6: m6_showMiniStatement();
 				break;
 		case 7: m7_searchForTransaction();
+				break;
+		case 8: m8_clearTransactionsUpToDate();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -190,6 +193,16 @@ void CashPoint::m6_showMiniStatement() const
 {
 	int	numOfTr = theUI_.getNumberOfTransactions();
 	theUI_.showMiniStatementOnScreen(p_theActiveAccount_->prepareFormattedMiniStatement(numOfTr));
+}
+
+void CashPoint::m7_searchForTransaction() const
+{
+
+}
+
+void CashPoint::m8_clearTransactionsUpToDate() const
+{
+	Date date = theUI_.getDateFromUser();
 }
 
 //------private file functions

@@ -9,6 +9,7 @@
 //---------------------------------------------------------------------------
 
 #include "constants.h"
+#include "Date.h"
 
 #include <iomanip>
 #include <iostream>
@@ -42,6 +43,7 @@ public:
     void	showStatementOnScreen( const string&) const;
 	void	showMiniStatementOnScreen(const string&) const;
 	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
+	Date	getDateFromUser() const;
 
 private:
     //support functions 

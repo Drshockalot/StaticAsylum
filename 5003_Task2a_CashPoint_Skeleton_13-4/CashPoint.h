@@ -52,6 +52,8 @@ private:
 	void m6_showMiniStatement() const;
 	//option 7
 	void m7_searchForTransaction() const;
+	//option 8
+	void m8_clearTransactionsUpToDate() const;
     //support file handling functions & creation of dynamic objects
     bool canOpenFile( const string&) const;
 	int checkAccountType( const string&) const;
