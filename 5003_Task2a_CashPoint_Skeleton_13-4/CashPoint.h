@@ -51,11 +51,11 @@ private:
 	//option 6
 	void m6_showMiniStatement() const;
 	//option 7
-	void m7_searchForTransaction() const;
+	void m7_searchForTransactions() const;
 	//option 8
 	void m8_clearTransactionsUpToDate() const;
-
-	void m7_searchTransactions() const;
+	//option 9
+	void m9_transforCashToAnotherAccount() const;
     //support file handling functions & creation of dynamic objects
 
 	void searchTransactions() const;

@@ -71,7 +71,6 @@ void CashPoint::performCardCommand( int option) {
 }
 int CashPoint::validateCard( const string& cashCardFileName) const {
 //check that the card exists (valid)
-    int validCardCode;
     if ( ! canOpenFile( cashCardFileName))   //invalid card
         return UNKNOWN_CARD;
     else    //card empty (exist but no bank account listed on card)
@@ -195,9 +194,13 @@ void CashPoint::m6_showMiniStatement() const
 	theUI_.showMiniStatementOnScreen(p_theActiveAccount_->prepareFormattedMiniStatement(numOfTr));
 }
 
-void CashPoint::m7_searchForTransaction() const
+void CashPoint::m7_searchForTransactions() const
 {
-
+	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
+	if(noTransaction)
+		theUI_.showNoTransactionsOnScreen();	
+	else
+		searchTransactions();
 }
 
 void CashPoint::m8_clearTransactionsUpToDate() const
@@ -225,18 +228,11 @@ void CashPoint::m8_clearTransactionsUpToDate() const
 		theUI_.showDeletionOfTransactionUpToDateOnScreen(d, numOfTr, deletionConfirmed);
 }
 
-void CashPoint::m7_searchTransactions() const
+void CashPoint::m9_transforCashToAnotherAccount() const
 {
-	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
-	if(noTransaction)
-	{
-		theUI_.showNoTransactionsOnScreen();	
-	}
-	else
-	{
-		searchTransactions();
-	}
+
 }
+
 //------private file functions
 
 bool CashPoint::canOpenFile( const string& st) const {
