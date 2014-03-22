@@ -24,8 +24,9 @@ public:
 	int getYear() const;				//return a data member value, year_
 	void setDate( int, int, int);		//set new values for date
     static const Date currentDate() ;   //return the current date
-
+	
 	string toFormattedString() const ;				//return date as formatted string ("DD/MM/YYYY")
+	bool isValidDate() const;
 
 	ostream& putDataInStream( ostream& os) const;	//send Date info into an output stream
 	istream& getDataFromStream( istream& is);		//receive Date info from an input stream

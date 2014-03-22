@@ -103,11 +103,12 @@ const string UserInterface::readInAccountToBeProcessed( string& anAccountNumber,
     return( FILEPATH + "account_" + anAccountNumber + "_" + aSortCode + ".txt");
 }
 
-Date UserInterface::getDateFromUser() const
+Date UserInterface::readInValidDate(Date& date) const
 {
-	Date date;
 	cout << "ENTER DATE: ";
-	cin >> date;
+	do
+		cin >> date;
+	while(date.isValidDate());
 	return date;
 }
 

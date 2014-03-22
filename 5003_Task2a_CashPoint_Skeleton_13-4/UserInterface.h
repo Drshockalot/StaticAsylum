@@ -46,7 +46,7 @@ public:
 	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
 	void	displayClearTransactionSuccessMessage(const Date& date, const int& numOfTr) const;
 	void	displayTransactions(const string& tr) const;
-	Date	getDateFromUser() const;
+	Date	readInValidDate(Date& date) const;
 
 private:
     //support functions 
