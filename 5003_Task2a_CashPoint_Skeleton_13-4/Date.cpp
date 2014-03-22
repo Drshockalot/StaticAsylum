@@ -48,15 +48,16 @@ string Date::toFormattedString() const {
 	return ( os_date.str());
 }
 
-bool Date::isValidDate() const
+bool Date::isValidDate(const Date& creationDate) const
 {
-	if(day_ > 0)
-		if(day_ < 28 && month_ == 2)
-			return true;
-		else if(day_ < 30 && (month_ == 4 || month_ == 6 || month_ == 9 || month_ == 11))
-			return true;
-		else if(day_ < 31 && (month_ == 1 || month_ == 3 || month_ == 5 || month_ == 7 || month_ == 10 || month_ == 12))
-			return true;
+	if((*this <= currentDate()) && (*this >= creationDate))
+		if(day_ > 0)
+			if(day_ < 28 && month_ == 2)
+				return true;
+			else if(day_ < 30 && (month_ == 4 || month_ == 6 || month_ == 9 || month_ == 11))
+				return true;
+			else if(day_ < 31 && (month_ == 1 || month_ == 3 || month_ == 5 || month_ == 7 || month_ == 10 || month_ == 12))
+				return true;
 	return false;
 }
 
@@ -93,7 +94,24 @@ bool Date::operator<( const Date& d) const { //NEW
 	     || (( year_ == d.year_) && (month_ < d.month_) )
 	     || (( year_ == d.year_) && (month_ == d.month_) && (day_ < d.day_)));
 }
-
+bool Date::operator<=( const Date& d) const
+{
+	return ((( year_ < d.year_)
+	     || (( year_ == d.year_) && (month_ < d.month_) )
+	     || (( year_ == d.year_) && (month_ == d.month_) && (day_ < d.day_))) ||
+		 (( day_ == d.day_) &&
+		 ( month_ == d.month_) &&
+		 ( year_ == d.year_)));
+}
+bool Date::operator>=( const Date& d) const
+{
+	return ((( year_ > d.year_)
+	     || (( year_ == d.year_) && (month_ > d.month_) )
+	     || (( year_ == d.year_) && (month_ == d.month_) && (day_ > d.day_))) ||
+		 (( day_ == d.day_) &&
+		 ( month_ == d.month_) &&
+		 ( year_ == d.year_)));
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

@@ -103,12 +103,17 @@ const string UserInterface::readInAccountToBeProcessed( string& anAccountNumber,
     return( FILEPATH + "account_" + anAccountNumber + "_" + aSortCode + ".txt");
 }
 
-Date UserInterface::readInValidDate(Date& date) const
+Date UserInterface::readInValidDate(const Date& cd) const
 {
-	cout << "ENTER DATE: ";
-	do
+	Date date;
+	cout << "\nENTER DATE: ";
+	cin >> date;
+	while(!date.isValidDate(cd))
+	{
+		cout << "\nINVALID DATE!";
+		cout << "\nENTER DATE: ";
 		cin >> date;
-	while(date.isValidDate());
+	}
 	return date;
 }
 
@@ -149,7 +154,7 @@ int UserInterface::getNumberOfTransactions() const
 	cout << "\nNUMBER OF TRANSACTIONS : ";
 	return ( readInPositiveAmount());
 }
-bool UserInterface::getTransactionClearConfirmation() const
+bool UserInterface::readInConfirmDeletion() const
 {
 	int choice;
 	cout << "\nCONFIRM TO CLEAR SELECTED TRANSACTIONS\n";
@@ -160,9 +165,15 @@ bool UserInterface::getTransactionClearConfirmation() const
 }
 //output functions
 
-void UserInterface::displayClearTransactionSuccessMessage(const Date& date, const int& numOfTr) const
+void UserInterface::showDeletionOfTransactionUpToDateOnScreen(const Date& date, const int& numOfTr, const bool& deletionConfirmed) const
 {
-	cout << "\nTHE " << numOfTr << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << date.toFormattedString() << " HAVE BEEN DELETED\n";
+	if(deletionConfirmed)
+		cout << "\nTHE " << numOfTr << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << date.toFormattedString() << " HAVE BEEN DELETED\n";
+}
+
+void UserInterface::showNoTransactionsUpToDateOnScreen(const Date& date) const
+{
+	cout << "\n THERE ARE NO TRANSACTIONS IN THIS ACCOUNT UP TO DATE " << date << "\n";
 }
 
 void UserInterface::showProduceBalanceOnScreen( double balance) const {
@@ -200,10 +211,15 @@ void UserInterface::showMiniStatementOnScreen(const string& miniStatement) const
 	cout << "\n________ END ACCOUNT MINI STATEMENT _____";
 }
 
-void UserInterface::displayTransactions(const string& tr) const
+void UserInterface::showTransactionsUpToDateOnScreen(const bool& noTransaction, const Date& d, const int& numOfTr, const string& str) const
 {
-	cout << "\nTRANSACTIONS UP UNTIL SELECTED DATE\n";
-	cout << tr;
+	if(!noTransaction)
+	{
+	cout << "\nLIST OF TRANSACTIONS PENDING FOR DELETION: ";
+	cout << "\n" << str;
+	}
+	else
+		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 }
 
 //---------------------------------------------------------------------------

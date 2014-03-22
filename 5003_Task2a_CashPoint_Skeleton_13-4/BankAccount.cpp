@@ -52,21 +52,11 @@ const TransactionList BankAccount::getTransactions() const {
     return transactions_;
 }
 
-const TransactionList BankAccount::getTransactionsUpToDate(const Date& date, int& numOfTr) const
+const void BankAccount::produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr) const
 {
-	TransactionList copy(getTransactions());
-	TransactionList temp;
-
-	while(copy.size() > 0)
-	{
-		if(copy.newestTransaction().getDate() < date || copy.newestTransaction().getDate() == date)
-		{
-			temp.addTransaction(copy.newestTransaction());
-			++numOfTr;
-		}
-		copy.deleteFirstTransaction();
-	}
-	return (temp);
+	TransactionList trl = transactions_.getTransactionsUpToDate(date);
+	numOfTr = trl.size();
+	str = trl.toFormattedString();
 }
 
 void BankAccount::clearTransactions(TransactionList tr)
@@ -102,6 +92,11 @@ void BankAccount::recordDeposit( double amountToDeposit) {
     //update active bankaccount
     transactions_.addNewTransaction( aTransaction);		//update transactions_
     updateBalance( amountToDeposit);			//increase balance_
+}
+
+void BankAccount::recordDeletionOfTransactionUpToDate(const Date& date) 
+{
+	transactions_.deleteTransactionsUpToDate(date);
 }
 
 double BankAccount::borrowable() const {

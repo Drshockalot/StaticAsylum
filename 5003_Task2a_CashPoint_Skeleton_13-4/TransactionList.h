@@ -25,6 +25,8 @@ public:
 	int    size() const;
 	TransactionList getAllDepositTransactions();
 	double getTotalTransactions() const;
+	TransactionList getTransactionsUpToDate(const Date& date) const;
+	void deleteTransactionsUpToDate(const Date& date);
 	void addTransaction(const Transaction tr);
 
 	const string toFormattedString() const;		//return transactionlist as a (formatted) string

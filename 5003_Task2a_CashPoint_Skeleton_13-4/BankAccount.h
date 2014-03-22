@@ -32,7 +32,7 @@ public:
     const Date getCreationDate() const;
 	double getBalance() const;
     const TransactionList getTransactions() const;
-	const TransactionList getTransactionsUpToDate(const Date& date, int& numOfTr) const;
+	const void produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr) const;
     bool	isEmptyTransactionList() const;
 	void produceAllDepositTransactions(string&, double&);
 	void showAllDepositsOnScreen(bool& b, string& s, double& d) const;
@@ -45,6 +45,7 @@ public:
 	const string prepareFormattedMiniStatement(int numOfTr) const;
 
     void recordDeposit( double amount);
+	void recordDeletionOfTransactionUpToDate(const Date& date);
 
 	double borrowable() const;
 	bool canWithdraw( double amount) const;

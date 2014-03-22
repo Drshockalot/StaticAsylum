@@ -40,6 +40,18 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 		this->addNewTransaction(firstTr);
 	}
 }
+
+void TransactionList::deleteTransactionsUpToDate(const Date& date)
+{
+	TransactionList copy(*this);
+	while(copy.size() > 0)
+	{
+		if(copy.newestTransaction().getDate() <= date)
+			this->deleteGivenTransaction(copy.newestTransaction());
+		copy.deleteFirstTransaction();
+	}
+}
+
 int TransactionList::size() const {
     return (listOfTransactions_.length());
 }
@@ -103,6 +115,21 @@ double TransactionList::getTotalTransactions() const
 
 	return total;
 }
+
+TransactionList TransactionList::getTransactionsUpToDate(const Date& date) const
+{
+	TransactionList copy(*this);
+	TransactionList temp;
+
+	while(copy.size() > 0)
+	{
+		if(copy.newestTransaction().getDate() <= date)
+			temp.addTransaction(copy.newestTransaction());
+		copy.deleteFirstTransaction();
+	}
+	return temp;
+}
+
 void TransactionList::addTransaction(const Transaction tr)
 {
 	listOfTransactions_.addAtEnd(tr);
