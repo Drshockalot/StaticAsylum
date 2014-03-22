@@ -34,12 +34,11 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 	else
 	{
 		Transaction firstTr(newestTransaction());
-			TransactionList trlist( *this);
-			trlist.deleteFirstTransaction();
-		trlist.deleteGivenTransaction(tr);
+			//TransactionList trlist( *this);
+			this->deleteFirstTransaction();
+		this->deleteGivenTransaction(tr);
 		this->addNewTransaction(firstTr);
 	}
-
 }
 int TransactionList::size() const {
     return (listOfTransactions_.length());

@@ -32,6 +32,7 @@ public:
     const Date getCreationDate() const;
 	double getBalance() const;
     const TransactionList getTransactions() const;
+	const TransactionList getTransactionsUpToDate(const Date& date, int& numOfTr) const;
     bool	isEmptyTransactionList() const;
 	void produceAllDepositTransactions(string&, double&);
 	void showAllDepositsOnScreen(bool& b, string& s, double& d) const;
@@ -48,6 +49,7 @@ public:
 	double borrowable() const;
 	bool canWithdraw( double amount) const;
     void recordWithdrawal( double amount);
+	void clearTransactions(TransactionList tr);
 
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;

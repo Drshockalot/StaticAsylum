@@ -3,4 +3,7 @@ BANK
 00-44
  1/ 1/2000
 200
-21/ 3/2014 19:52:55 deposit_to_ATM 100
+21/03/2014 19:52:55 deposit_to_ATM 100
+22/10/2010 20:53:56 deposit_to_ATM 100
+21/03/2011 19:52:55 deposit_to_ATM 100
+22/10/2012 20:53:56 deposit_to_ATM 100

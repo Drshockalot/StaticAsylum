@@ -51,6 +51,35 @@ double BankAccount::getBalance() const {
 const TransactionList BankAccount::getTransactions() const {
     return transactions_;
 }
+
+const TransactionList BankAccount::getTransactionsUpToDate(const Date& date, int& numOfTr) const
+{
+	TransactionList copy(getTransactions());
+	TransactionList temp;
+
+	while(copy.size() > 0)
+	{
+		if(copy.newestTransaction().getDate() < date || copy.newestTransaction().getDate() == date)
+		{
+			temp.addTransaction(copy.newestTransaction());
+			++numOfTr;
+		}
+		copy.deleteFirstTransaction();
+	}
+	return (temp);
+}
+
+void BankAccount::clearTransactions(TransactionList tr)
+{
+	TransactionList deleteCopy(tr);
+	while(deleteCopy.size() > 0)
+	{
+//		if(deleteCopy.newestTransaction() == transactions_.newestTransaction())
+		transactions_.deleteGivenTransaction(deleteCopy.newestTransaction());
+		deleteCopy.deleteFirstTransaction();
+	}
+}
+
 bool BankAccount::isEmptyTransactionList() const {
 	return transactions_.size() == 0;
 }

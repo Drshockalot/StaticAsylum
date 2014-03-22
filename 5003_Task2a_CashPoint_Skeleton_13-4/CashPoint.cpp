@@ -202,7 +202,16 @@ void CashPoint::m7_searchForTransaction() const
 
 void CashPoint::m8_clearTransactionsUpToDate() const
 {
+	//if(p_theActiveAccount_->getTransactions().size())
+	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
 	Date date = theUI_.getDateFromUser();
+	int numOfTr = 0;
+	TransactionList tr = p_theActiveAccount_->getTransactionsUpToDate(date, numOfTr);
+	theUI_.displayTransactions(tr.toFormattedString());
+	bool confirmation = theUI_.getTransactionClearConfirmation();
+	if(confirmation)
+		p_theActiveAccount_->clearTransactions(tr);
+	theUI_.displayClearTransactionSuccessMessage(date, numOfTr);
 }
 
 //------private file functions

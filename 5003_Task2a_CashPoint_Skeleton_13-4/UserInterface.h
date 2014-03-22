@@ -36,6 +36,7 @@ public:
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
 	int		getNumberOfTransactions() const;
+	bool	getTransactionClearConfirmation() const;
 
     void	showProduceBalanceOnScreen( double bal) const;
     void	showDepositOnScreen( bool auth, double deposit) const;
@@ -43,6 +44,8 @@ public:
     void	showStatementOnScreen( const string&) const;
 	void	showMiniStatementOnScreen(const string&) const;
 	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
+	void	displayClearTransactionSuccessMessage(const Date& date, const int& numOfTr) const;
+	void	displayTransactions(const string& tr) const;
 	Date	getDateFromUser() const;
 
 private:

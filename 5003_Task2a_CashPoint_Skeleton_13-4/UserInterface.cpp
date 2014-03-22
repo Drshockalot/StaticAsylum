@@ -148,7 +148,21 @@ int UserInterface::getNumberOfTransactions() const
 	cout << "\nNUMBER OF TRANSACTIONS : ";
 	return ( readInPositiveAmount());
 }
+bool UserInterface::getTransactionClearConfirmation() const
+{
+	int choice;
+	cout << "\nCONFIRM TO CLEAR SELECTED TRANSACTIONS\n";
+	cout << "1 = yes\n";
+	cout << "0 = no\n";
+	cin >> choice;
+	return(choice == 1);
+}
 //output functions
+
+void UserInterface::displayClearTransactionSuccessMessage(const Date& date, const int& numOfTr) const
+{
+	cout << "\nTHE " << numOfTr << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << date.toFormattedString() << " HAVE BEEN DELETED\n";
+}
 
 void UserInterface::showProduceBalanceOnScreen( double balance) const {
 	cout << fixed << setprecision(2) << setfill(' ');
@@ -183,6 +197,12 @@ void UserInterface::showMiniStatementOnScreen(const string& miniStatement) const
 	cout << "\n________ ACCOUNT MINI STATEMENT _____";
 	cout << miniStatement;
 	cout << "\n________ END ACCOUNT MINI STATEMENT _____";
+}
+
+void UserInterface::displayTransactions(const string& tr) const
+{
+	cout << "\nTRANSACTIONS UP UNTIL SELECTED DATE\n";
+	cout << tr;
 }
 
 //---------------------------------------------------------------------------
