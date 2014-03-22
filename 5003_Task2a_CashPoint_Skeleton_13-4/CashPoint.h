@@ -51,7 +51,10 @@ private:
 	//option 6
 	void m6_showMiniStatement() const;
 
+	void m7_searchTransactions() const;
     //support file handling functions & creation of dynamic objects
+
+	void searchTransactions() const;
     bool canOpenFile( const string&) const;
 	int checkAccountType( const string&) const;
 	bool linkedCard( string cashCardFileName) const;

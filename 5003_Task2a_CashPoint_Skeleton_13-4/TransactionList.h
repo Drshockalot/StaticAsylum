@@ -26,6 +26,9 @@ public:
 	TransactionList getAllDepositTransactions();
 	double getTotalTransactions() const;
 	void addTransaction(const Transaction tr);
+	TransactionList getTransactionsForAmount(const double amount);
+	TransactionList getTransactionsForTitle(const string title);
+	TransactionList getTransactionsForDate(const Date date);
 
 	const string toFormattedString() const;		//return transactionlist as a (formatted) string
 	ostream& putDataInStream( ostream& os) const;	//send TransactionList info into an output stream

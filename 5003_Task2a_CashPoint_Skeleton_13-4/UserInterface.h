@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 
 #include "constants.h"
-
+#include "Date.h"
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -42,7 +42,13 @@ public:
     void	showStatementOnScreen( const string&) const;
 	void	showMiniStatementOnScreen(const string&) const;
 	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
-
+	void	showNoTransactionsOnScreen() const;
+	void	showSearchMenu() const;
+	int		readInSearchCommand() const;
+	double	readInSearchAmount() const; //needs to be template
+	string  readInSearchString() const;
+	Date readInSearchDate() const;
+	void	showMatchingTransactionsOnScreen( const string& results) const;
 private:
     //support functions 
 	void	showCardIdentificationMenu() const;

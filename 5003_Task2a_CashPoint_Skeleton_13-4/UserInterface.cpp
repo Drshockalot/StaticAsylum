@@ -219,3 +219,55 @@ void UserInterface::showAllDepositsOnScreen(bool noTransaction, string str, doub
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 	}
 }
+void UserInterface::showNoTransactionsOnScreen() const
+{
+	cout << "\nNO TRANSACTIONS AVAILABLE AT THIS TIME";
+}
+
+void UserInterface::showSearchMenu() const
+{
+	cout << "\n___________Search Transactions_____________ ";
+	cout << "\n       1	By amount";
+	cout << "\n       2 By title";
+	cout << "\n       3	By date";
+	cout << "\n       4 Exit search";
+}
+int UserInterface::readInSearchCommand() const
+{
+	cout << "\n ENTER YOUR COMMAND:  ";
+	int option;
+	cin >> option;
+	return option;
+}
+double UserInterface::readInSearchAmount() const
+{
+	double amount;
+	cout << "\n ENTER SEARCH AMOUNT:  ";
+	cin >> amount;
+	return amount;
+	//return searchAmount;
+}
+string UserInterface::readInSearchString() const
+{
+	string amount;
+	cout << "\n ENTER SEARCH AMOUNT:  ";
+	cin >> amount;
+	cout << amount;
+	return amount;
+}
+Date UserInterface::readInSearchDate() const
+{
+	int day,month,year;
+	cout << "\n ENTER SEARCH DAY:  ";
+	cin >> day;
+	cout << "\n ENTER SEARCH MONTH:  ";
+	cin >> month;
+	cout << "\n ENTER SEARCH YEAR:  ";
+	cin >> year;
+	Date searchDate(day,month,year);
+	return searchDate;
+}
+void UserInterface::showMatchingTransactionsOnScreen( const string& results) const {
+    cout << "\n________ SEARCH RESULTS _____";
+	cout << results;
+}

@@ -145,6 +145,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 6: m6_showMiniStatement();
 				break;
+		case 7: m7_searchTransactions();
+			break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -191,6 +193,18 @@ void CashPoint::m6_showMiniStatement() const
 	theUI_.showMiniStatementOnScreen(p_theActiveAccount_->prepareFormattedMiniStatement(numOfTr));
 }
 
+void CashPoint::m7_searchTransactions() const
+{
+	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
+	if(noTransaction)
+	{
+		theUI_.showNoTransactionsOnScreen();	
+	}
+	else
+	{
+		searchTransactions();
+	}
+}
 //------private file functions
 
 bool CashPoint::canOpenFile( const string& st) const {
@@ -270,3 +284,26 @@ BankAccount* CashPoint::releaseBankAccount( BankAccount* p_BA, string aBAFileNam
 	return nullptr;
 }
 
+void CashPoint::searchTransactions() const
+{
+	double amount;
+	string title;
+	string date;
+	theUI_.showSearchMenu();
+	int opt = theUI_.readInSearchCommand();
+	switch(opt)
+	{
+	case 1:
+		amount = theUI_.readInSearchAmount();
+		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(amount));
+		break;
+	case 2: 
+		title = theUI_.readInSearchString();
+		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7b_showTransactionsForTitle(title));
+		break;
+	case 3: 
+		Date date = theUI_.readInSearchDate();
+		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7c_showTransactionsForDate(date));
+		break;
+	}
+}
