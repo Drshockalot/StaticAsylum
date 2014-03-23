@@ -108,6 +108,32 @@ bool BankAccount::canWithdraw( double amountToWithdraw ) const {
     return ( amountToWithdraw <= borrowable());
 }
 
+bool BankAccount::canTransferOut(double transferAmount) const
+{
+	return (transferAmount < getBalance());
+}
+
+bool BankAccount::canTransferIn(double transferAmount) const
+{
+	return true;
+}
+
+void BankAccount::recordTransferIn(const double& amount, const string& aAN, const string& aSC)
+{
+	Transaction transferTransaction( "transfer_from_ACCOUNT_" + aAN + "_" + aSC, -amount);
+
+	transactions_.addNewTransaction(transferTransaction);
+	updateBalance(amount);
+}
+
+void BankAccount::recordTransferOut(const double& amount, const string& tAN, const string& tSC)
+{
+	Transaction transferTransaction( "transfer_to_ACCOUNT_" + tAN + "_" + tSC, -amount);
+
+	transactions_.addNewTransaction(transferTransaction);
+	updateBalance(-amount);
+}
+
 void BankAccount::recordWithdrawal( double amountToWithdraw) {
 	//create a withdrawal transaction
     Transaction aTransaction( "withdrawal_from_ATM", -amountToWithdraw);

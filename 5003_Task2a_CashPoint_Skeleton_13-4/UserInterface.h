@@ -37,6 +37,7 @@ public:
     double	readInDepositAmount() const;
 	int		getNumberOfTransactions() const;
 	bool	readInConfirmDeletion() const;
+	double	readInTransferAmount() const;
 
     void	showProduceBalanceOnScreen( double bal) const;
     void	showDepositOnScreen( bool auth, double deposit) const;
@@ -47,6 +48,7 @@ public:
 	void	showDeletionOfTransactionUpToDateOnScreen(const Date& date, const int& numOfTr, const bool& deletionConfirmed) const;
 	void	showNoTransactionsUpToDateOnScreen(const Date& date) const;
 	void	showTransactionsUpToDateOnScreen(const bool& noTransactions, const Date& d, const int& numOfTr, const string& str) const;
+	void	showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount) const;
 	Date	readInValidDate(const Date& date) const;
 
 	void	showNoTransactionsOnScreen() const;

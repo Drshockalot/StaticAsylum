@@ -14,7 +14,7 @@
 //____constructors & destructors
 
 CashPoint::CashPoint()
-	: p_theActiveAccount_( nullptr), p_theCashCard_( nullptr)
+	: p_theActiveAccount_( nullptr), p_theCashCard_( nullptr), p_theTransferAccount_( nullptr)
 { }
 
 CashPoint::~CashPoint()
@@ -128,6 +128,25 @@ void CashPoint::processOneAccountRequests() {
 	}
 }
 
+void CashPoint::attemptTransfer(BankAccount* p_theTransferAccount_)
+{
+	double transferAmount = theUI_.readInTransferAmount();
+	bool trOutOK = p_theActiveAccount_->canTransferOut(transferAmount);
+	bool trInOK = p_theTransferAccount_->canTransferIn(transferAmount);
+	if(trOutOK && trInOK)
+		recordTransfer(transferAmount, p_theTransferAccount_);
+	theUI_.showTransferOnScreen(trOutOK, trInOK, transferAmount);
+}
+
+void CashPoint::recordTransfer(const double& transferAmount, BankAccount* p_theTransferAccount_)
+{
+	string tAN = p_theTransferAccount_->getAccountNumber();
+	string tSC = p_theTransferAccount_->getSortCode();
+	p_theActiveAccount_->recordTransferOut(transferAmount, tAN, tSC);
+	string aAN = p_theActiveAccount_->getAccountNumber();
+	string aSC = p_theActiveAccount_->getSortCode();
+	p_theTransferAccount_->recordTransferIn(transferAmount, aAN, aSC);
+}
 
 void CashPoint::performAccountProcessingCommand( int option) {
 	switch ( option)
@@ -144,9 +163,11 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 6: m6_showMiniStatement();
 				break;
-		case 7: m7_searchTransactions();
+		case 7: m7_searchForTransactions();
 				break;
 		case 8: m8_clearTransactionsUpToDate();
+				break;
+		case 9: m9_transferCashToAnotherAccount();
 				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
@@ -228,9 +249,20 @@ void CashPoint::m8_clearTransactionsUpToDate() const
 		theUI_.showDeletionOfTransactionUpToDateOnScreen(d, numOfTr, deletionConfirmed);
 }
 
-void CashPoint::m9_transforCashToAnotherAccount() const
+void CashPoint::m9_transferCashToAnotherAccount()
 {
-
+	string accNo = "";
+	string sortNo = "";
+	theUI_.showCardOnScreen(p_theCashCard_->toFormattedString());
+	string bankAccFileName = theUI_.readInAccountToBeProcessed(accNo, sortNo);
+	int validAccountCode = validateAccount(bankAccFileName);
+	theUI_.showValidateAccountOnScreen(validAccountCode, accNo, sortNo);
+	if(validAccountCode == 0)
+	{
+		p_theTransferAccount_ = activateBankAccount(bankAccFileName);
+		attemptTransfer(p_theTransferAccount_);
+		releaseBankAccount(p_theTransferAccount_, bankAccFileName);
+	}
 }
 
 //------private file functions

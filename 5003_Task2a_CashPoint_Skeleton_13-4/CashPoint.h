@@ -25,6 +25,7 @@ public:
 private:
 	//data items
     BankAccount* p_theActiveAccount_;
+	BankAccount* p_theTransferAccount_;
     CashCard* p_theCashCard_;
     const UserInterface theUI_;
 
@@ -35,6 +36,8 @@ private:
 	int  validateAccount( const string&) const;
 	void processOneCustomerRequests();
 	void processOneAccountRequests();
+	void attemptTransfer(BankAccount* p_theTransferAccount_);
+	void recordTransfer(const double& transferAmount, BankAccount* p_theTransferAccount_);
 
     void performSubMenuCommand( int);
     //commands
@@ -55,7 +58,7 @@ private:
 	//option 8
 	void m8_clearTransactionsUpToDate() const;
 	//option 9
-	void m9_transforCashToAnotherAccount() const;
+	void m9_transferCashToAnotherAccount();
     //support file handling functions & creation of dynamic objects
 
 	void searchTransactions() const;

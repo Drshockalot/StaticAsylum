@@ -118,6 +118,14 @@ Date UserInterface::readInValidDate(const Date& cd) const
 	return date;
 }
 
+double UserInterface::readInTransferAmount() const
+{
+	double amount;
+	cout << "\nENTER THE AMOUNT YOU WOULD LIKE TO TRANSFER: ";
+	cin >> amount;
+	return amount;
+}
+
 void UserInterface::showValidateAccountOnScreen( int validCode, const string& accNum, const string& srtCode) const {
     switch( validCode)
     {
@@ -221,6 +229,17 @@ void UserInterface::showTransactionsUpToDateOnScreen(const bool& noTransaction, 
 	}
 	else
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
+}
+
+void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount) const
+{
+	if(trOutOK && trInOK)
+	{
+		cout << "\nTRANSACTION SUCCESSFUL!";
+		cout << "\nTRANSACTION AMOUNT: " << transferAmount;
+	}
+	else
+		cout << "\nTRANSACTION UNSUCCESSFUL";
 }
 
 //---------------------------------------------------------------------------

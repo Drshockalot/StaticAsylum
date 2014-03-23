@@ -49,7 +49,11 @@ public:
 
 	double borrowable() const;
 	bool canWithdraw( double amount) const;
+	bool canTransferOut(double amount) const;
+	bool canTransferIn(double amount) const;
     void recordWithdrawal( double amount);
+	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
+	void recordTransferOut(const double& amount, const string& tAN, const string& tSC);
 	void clearTransactions(TransactionList tr);
 
 	void readInBankAccountFromFile( const string& fileName);
