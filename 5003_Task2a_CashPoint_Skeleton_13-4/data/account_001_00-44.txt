@@ -2,8 +2,10 @@ BANK
 001
 00-44
  1/ 1/2000
-200
-21/03/2014 19:52:55 deposit_to_ATM 100
+140
+23/ 3/2014 16:42:26 withdrawal_from_ATM -10
+23/ 3/2014 16:42:06 transfer_to_ACCOUNT_002_00-44 -50
+21/ 3/2014 19:52:55 deposit_to_ATM 100
 22/10/2010 20:53:56 deposit_to_ATM 100
-21/03/2011 19:52:55 deposit_to_ATM 100
+21/ 3/2011 19:52:55 deposit_to_ATM 100
 22/10/2012 20:53:56 deposit_to_ATM 100

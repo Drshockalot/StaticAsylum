@@ -120,7 +120,7 @@ bool BankAccount::canTransferIn(double transferAmount) const
 
 void BankAccount::recordTransferIn(const double& amount, const string& aAN, const string& aSC)
 {
-	Transaction transferTransaction( "transfer_from_ACCOUNT_" + aAN + "_" + aSC, -amount);
+	Transaction transferTransaction( "transfer_from_ACC_" + aAN + "_" + aSC, amount);
 
 	transactions_.addNewTransaction(transferTransaction);
 	updateBalance(amount);
@@ -128,7 +128,7 @@ void BankAccount::recordTransferIn(const double& amount, const string& aAN, cons
 
 void BankAccount::recordTransferOut(const double& amount, const string& tAN, const string& tSC)
 {
-	Transaction transferTransaction( "transfer_to_ACCOUNT_" + tAN + "_" + tSC, -amount);
+	Transaction transferTransaction( "transfer_to_ACC_" + tAN + "_" + tSC, -amount);
 
 	transactions_.addNewTransaction(transferTransaction);
 	updateBalance(-amount);
