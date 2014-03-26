@@ -304,34 +304,7 @@ int UserInterface::readInSearchCommand() const
 	cin >> option;
 	return option;
 }
-double UserInterface::readInSearchAmount() const
-{
-	double amount;
-	cout << "\n ENTER SEARCH AMOUNT:  ";
-	cin >> amount;
-	return amount;
-	//return searchAmount;
-}
-string UserInterface::readInSearchString() const
-{
-	string amount;
-	cout << "\n ENTER SEARCH AMOUNT:  ";
-	cin >> amount;
-	cout << amount;
-	return amount;
-}
-Date UserInterface::readInSearchDate() const
-{
-	int day,month,year;
-	cout << "\n ENTER SEARCH DAY:  ";
-	cin >> day;
-	cout << "\n ENTER SEARCH MONTH:  ";
-	cin >> month;
-	cout << "\n ENTER SEARCH YEAR:  ";
-	cin >> year;
-	Date searchDate(day,month,year);
-	return searchDate;
-}
+
 void UserInterface::showMatchingTransactionsOnScreen( const string& results) const {
     cout << "\n________ SEARCH RESULTS _____";
 	cout << results;

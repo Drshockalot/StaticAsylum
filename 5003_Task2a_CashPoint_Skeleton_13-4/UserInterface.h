@@ -54,9 +54,27 @@ public:
 	void	showNoTransactionsOnScreen() const;
 	void	showSearchMenu() const;
 	int		readInSearchCommand() const;
-	double	readInSearchAmount() const; //needs to be template
-	string  readInSearchString() const;
-	Date readInSearchDate() const;
+	template <typename T> T readInSearchAmount() const
+	{
+		T amount;
+		cout << "\n ENTER SEARCH AMOUNT:  ";
+		cin >> amount;
+		return amount;
+		//return searchAmount;
+	}
+	template <> Date readInSearchAmount<Date>() const
+	{
+		int day,month,year;
+		cout << "\n ENTER SEARCH DAY:  ";
+		cin >> day;
+		cout << "\n ENTER SEARCH MONTH:  ";
+		cin >> month;
+		cout << "\n ENTER SEARCH YEAR:  ";
+		cin >> year;
+		Date searchDate(day,month,year);
+		return searchDate;
+	}
+
 	void	showMatchingTransactionsOnScreen( const string& results) const;
 private:
     //support functions 
