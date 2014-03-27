@@ -217,6 +217,32 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				default:theUI_.showErrorInvalidCommand();
 			}
 			break;
+		case 2:
+			switch ( option)
+			{
+				case 1:	m1_produceBalance();
+						break;
+				case 2: m2_withdrawFromBankAccount();
+ 						break;
+				case 3:	m3_depositToBankAccount();
+						break;
+				case 4:	m4_produceStatement();
+						break;
+				case 5: m5_showAllDepositTransactions();
+						break;
+				case 6: m6_showMiniStatement();
+						break;
+				case 7: m7_searchForTransactions();
+						break;
+				case 8: m8_clearTransactionsUpToDate();
+						break;
+				case 9: m9_transferCashToAnotherAccount();
+						break;
+				case 10: requestMinimumBalance();
+						break;
+				default:theUI_.showErrorInvalidCommand();
+			}
+			break;
 	}
 }
 //------ menu options
@@ -317,6 +343,13 @@ void CashPoint::requestOverdraftLimit()
 	p_CurrentAccount_ = dynamic_cast<CurrentAccount*>(p_theActiveAccount_);
 	double oD = p_CurrentAccount_->getOverdraftLimit();
 	theUI_.showOverdraftLimitOnScreen(oD);
+}
+
+void CashPoint::requestMinimumBalance()
+{
+	p_SavingsAccount_ = dynamic_cast<SavingsAccount*>(p_theActiveAccount_);
+	double mB = p_SavingsAccount_->getMinimumBalance();
+	theUI_.showMinimumBalanceOnScreen(mB);
 }
 
 //------private file functions

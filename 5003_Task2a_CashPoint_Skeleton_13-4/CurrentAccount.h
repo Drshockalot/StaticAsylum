@@ -9,8 +9,10 @@ class CurrentAccount: public BankAccount
 {
 public:
 	CurrentAccount();
+	virtual ~CurrentAccount();
 	double getOverdraftLimit() const;
-	ostream& putDataInStream( ostream& os) const;
+
+	virtual ostream& putDataInStream( ostream& os) const;
 	virtual istream& getDataFromStream( istream& is);
 	virtual const string prepareFormattedStatement() const;
 	virtual const string prepareFormattedMiniStatement(int numOfTr) const;

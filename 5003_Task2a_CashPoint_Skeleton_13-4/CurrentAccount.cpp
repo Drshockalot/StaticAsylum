@@ -4,6 +4,9 @@ CurrentAccount::CurrentAccount()
 	: overdraftLimit(0.0)
 {}
 
+CurrentAccount::~CurrentAccount()
+{}
+
 double CurrentAccount::getOverdraftLimit() const
 {
 	return overdraftLimit;
@@ -125,24 +128,3 @@ void CurrentAccount::recordWithdrawal( double amount)
 	addTransaction( aTransaction);		//update transactions_
     updateBalance( -amount);			//decrease balance_
 }
-
-//void CurrentAccount::updateBalance(double amount)
-//{
-//	if(amount < 0)
-//	{
-//		if((amount * -1) > getBalance())
-//		{
-//			amount = amount + getBalance();
-//			overdraftLimit += amount;
-//			setBalance(0);
-//		}
-//		else
-//		{
-//			setBalance(getBalance() - amount);
-//		}
-//	}
-//	else
-//	{
-//
-//	}
-//}

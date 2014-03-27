@@ -50,6 +50,7 @@ public:
 	void	showTransactionsUpToDateOnScreen(const bool& noTransactions, const Date& d, const int& numOfTr, const string& str) const;
 	void	showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount) const;
 	void	showOverdraftLimitOnScreen(const double& oD) const;
+	void	showMinimumBalanceOnScreen(const double& mB) const;
 	Date	readInValidDate(const Date& date) const;
 
 	void	showNoTransactionsOnScreen() const;

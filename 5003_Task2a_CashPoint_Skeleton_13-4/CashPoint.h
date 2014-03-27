@@ -31,6 +31,7 @@ private:
 	BankAccount* p_theTransferAccount_;
     CashCard* p_theCashCard_;
 	CurrentAccount* p_CurrentAccount_;
+	SavingsAccount* p_SavingsAccount_;
     const UserInterface theUI_;
 
 	//support functions
@@ -66,6 +67,9 @@ private:
 
 	//current account functions
 	void requestOverdraftLimit();
+
+	//savings account functions
+	void requestMinimumBalance();
 
     //support file handling functions & creation of dynamic objects
 
