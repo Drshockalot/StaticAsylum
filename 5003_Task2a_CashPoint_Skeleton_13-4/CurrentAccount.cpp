@@ -11,7 +11,6 @@ double CurrentAccount::getOverdraftLimit() const
 
 ostream& CurrentAccount::putDataInStream( ostream& os) const
 {
-	BankAccount::putDataInStream(os);
 	os << getAccountType() << "\n";				//put account type
 	os << getAccountNumber() << "\n";			//put account number
 	os << getSortCode() << "\n";				//put sort code
@@ -25,8 +24,8 @@ ostream& CurrentAccount::putDataInStream( ostream& os) const
 
 istream& CurrentAccount::getDataFromStream( istream& is)
 {
-	string accT, sC;
-	int accN, bal;
+	string accT, sC, accN;
+	int bal;
 	Date cDate;
 	TransactionList tr;
 	is >> accT;						//get account type

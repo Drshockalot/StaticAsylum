@@ -37,25 +37,67 @@ void UserInterface::showCardIdentificationMenu() const {
 	cout << "\n       1              Enter your card details";
 	cout << "\n      ________________________________________";
 }
-int UserInterface::readInAccountProcessingCommand() const{
-    showAccountProcessingMenu();
+int UserInterface::readInAccountProcessingCommand(const string& accType) const{
+    showAccountProcessingMenu(accType);
     return ( readInCommand());
 }
-void UserInterface::showAccountProcessingMenu() const {
-	cout << "\n\n\n      ________________________________________";
-	cout << "\n      ________ACCOUNT PROCESSING MENU________";
-	cout << "\n      ________________________________________";
-	cout << "\n       0 End account processing & remove card";
-	cout << "\n       1                      Display balance";
-	cout << "\n       2                Withdraw from account";
-	cout << "\n       3                 Deposit into account";
-	cout << "\n       4                       Show statement";
-	cout << "\n       5                    Show all deposits";
-	cout << "\n       6                  Show mini statement";
-	cout << "\n       7          Search account transactions";
-	cout << "\n       8    Clear all transactions up to date";
-	cout << "\n       9          Transfer to another account  //TO BE IMPLEMENTED FOR ASS 2";
-	cout << "\n         ________________________________________";
+void UserInterface::showAccountProcessingMenu(const string& accType) const {
+	int menu = 0;
+
+	if(accType == "BANK")
+		menu = 0;
+	else if(accType == "CURRENT")
+		menu = 1;
+	else if(accType == "SAVINGS")
+		menu = 2;
+	else if(accType == "CHILD")
+		menu = 3;
+	else if(accType == "ISA")
+		menu = 4;
+
+	switch(menu)
+	{
+		case 0:
+				cout << "\n\n\n      ________________________________________";
+				cout << "\n      ________ACCOUNT PROCESSING MENU________";
+				cout << "\n      ________________________________________";
+				cout << "\n       0 End account processing & remove card";
+				cout << "\n       1                      Display balance";
+				cout << "\n       2                Withdraw from account";
+				cout << "\n       3                 Deposit into account";
+				cout << "\n       4                       Show statement";
+				cout << "\n       5                    Show all deposits";
+				cout << "\n       6                  Show mini statement";
+				cout << "\n       7          Search account transactions";
+				cout << "\n       8    Clear all transactions up to date";
+				cout << "\n       9          Transfer to another account";
+				cout << "\n         ________________________________________";
+			break;
+		case 1:
+				cout << "\n\n\n      ________________________________________";
+				cout << "\n      ________ACCOUNT PROCESSING MENU________";
+				cout << "\n      ________________________________________";
+				cout << "\n       0 End account processing & remove card";
+				cout << "\n       1                      Display balance";
+				cout << "\n       2                Withdraw from account";
+				cout << "\n       3                 Deposit into account";
+				cout << "\n       4                       Show statement";
+				cout << "\n       5                    Show all deposits";
+				cout << "\n       6                  Show mini statement";
+				cout << "\n       7          Search account transactions";
+				cout << "\n       8    Clear all transactions up to date";
+				cout << "\n       9          Transfer to another account";
+				cout << "\n       10              Display OverdraftLimit";
+				cout << "\n         ________________________________________";
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+	}
+		
 }
 
 const string UserInterface::readInCardToBeProcessed( string& aCardNumber) const {

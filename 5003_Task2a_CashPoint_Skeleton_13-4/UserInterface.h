@@ -23,7 +23,7 @@ public:
     void	showByeScreen() const;
 
 	int		readInCardIdentificationCommand() const;
-	int		readInAccountProcessingCommand() const;
+	int		readInAccountProcessingCommand(const string& accType) const;
 
 	void	showErrorInvalidCommand() const;
     void	wait() const;
@@ -80,7 +80,7 @@ public:
 private:
     //support functions 
 	void	showCardIdentificationMenu() const;
-	void	showAccountProcessingMenu() const;
+	void	showAccountProcessingMenu(const string& accType) const;
     int		readInCommand() const;
     double	readInPositiveAmount() const;
 };

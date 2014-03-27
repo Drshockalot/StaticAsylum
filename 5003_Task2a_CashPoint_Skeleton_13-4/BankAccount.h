@@ -40,7 +40,7 @@ public:
 	//functions to put data into and get data from streams
 	virtual ostream& putDataInStream( ostream& os) const;
 	virtual istream& getDataFromStream( istream& is);
-	virtual void setBADetails(const string& accT, const int& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr);
+	virtual void setBADetails(const string& accT, const string& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr);
 
 	//other operations
 	virtual const string prepareFormattedStatement() const;

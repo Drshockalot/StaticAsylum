@@ -230,7 +230,7 @@ istream& BankAccount::getDataFromStream( istream& is) {
 	return is;
 }
 
-void BankAccount::setBADetails(const string& accT, const int& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr)
+void BankAccount::setBADetails(const string& accT, const string& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr)
 {
 	accountType_ = accT;
 	accountNumber_ = accN;

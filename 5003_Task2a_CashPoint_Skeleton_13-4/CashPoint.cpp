@@ -119,12 +119,14 @@ void CashPoint::processOneCustomerRequests() {
 void CashPoint::processOneAccountRequests() {
     int option;
 	//select option from account processing menu
-  	option = theUI_.readInAccountProcessingCommand();
+	string accType = p_theActiveAccount_->getAccountType();
+  	option = theUI_.readInAccountProcessingCommand(accType);
 	while ( option != QUIT_COMMAND)
 	{
 		performAccountProcessingCommand( option);   //process command for selected option
 		theUI_.wait();
-        option = theUI_.readInAccountProcessingCommand();   //select another option
+		string accType = p_theActiveAccount_->getAccountType();
+        option = theUI_.readInAccountProcessingCommand(accType);   //select another option
 	}
 }
 
@@ -149,29 +151,72 @@ void CashPoint::recordTransfer(const double& transferAmount, BankAccount* p_theT
 }
 
 void CashPoint::performAccountProcessingCommand( int option) {
-	switch ( option)
+	string accType = p_theActiveAccount_->getAccountType();
+
+	int menu = 0;
+
+	if(accType == "BANK")
+		menu = 0;
+	else if(accType == "CURRENT")
+		menu = 1;
+	else if(accType == "SAVINGS")
+		menu = 2;
+	else if(accType == "CHILD")
+		menu = 3;
+	else if(accType == "ISA")
+		menu = 4;
+	switch(menu)
 	{
-		case 1:	m1_produceBalance();
-				break;
-		case 2: m2_withdrawFromBankAccount();
- 				break;
-		case 3:	m3_depositToBankAccount();
-				break;
-		case 4:	m4_produceStatement();
-				break;
-		case 5: m5_showAllDepositTransactions();
-				break;
-		case 6: m6_showMiniStatement();
-				break;
-		case 7: m7_searchForTransactions();
-				break;
-		case 8: m8_clearTransactionsUpToDate();
-				break;
-		case 9: m9_transferCashToAnotherAccount();
-				break;
-		case 10: requestOverdraftLimit();
-				break;
-		default:theUI_.showErrorInvalidCommand();
+		case 0:
+			switch ( option)
+			{
+				case 1:	m1_produceBalance();
+						break;
+				case 2: m2_withdrawFromBankAccount();
+ 						break;
+				case 3:	m3_depositToBankAccount();
+						break;
+				case 4:	m4_produceStatement();
+						break;
+				case 5: m5_showAllDepositTransactions();
+						break;
+				case 6: m6_showMiniStatement();
+						break;
+				case 7: m7_searchForTransactions();
+						break;
+				case 8: m8_clearTransactionsUpToDate();
+						break;
+				case 9: m9_transferCashToAnotherAccount();
+						break;
+				default:theUI_.showErrorInvalidCommand();
+			}
+			break;
+		case 1:
+			switch ( option)
+			{
+				case 1:	m1_produceBalance();
+						break;
+				case 2: m2_withdrawFromBankAccount();
+ 						break;
+				case 3:	m3_depositToBankAccount();
+						break;
+				case 4:	m4_produceStatement();
+						break;
+				case 5: m5_showAllDepositTransactions();
+						break;
+				case 6: m6_showMiniStatement();
+						break;
+				case 7: m7_searchForTransactions();
+						break;
+				case 8: m8_clearTransactionsUpToDate();
+						break;
+				case 9: m9_transferCashToAnotherAccount();
+						break;
+				case 10: requestOverdraftLimit();
+						break;
+				default:theUI_.showErrorInvalidCommand();
+			}
+			break;
 	}
 }
 //------ menu options
