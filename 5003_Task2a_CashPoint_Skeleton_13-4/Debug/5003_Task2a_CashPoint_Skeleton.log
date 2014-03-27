@@ -1,17 +1,16 @@
-﻿Build started 26/03/2014 14:08:12.
-     1>Project "C:\Users\Luke\Documents\Git\C+plus\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" on node 2 (Build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug\5003_Task2a_CashPoint_Skeleton.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt 5003_Ass2_Main.cpp CashPoint.cpp UserInterface.cpp
-         UserInterface.cpp
-     1>c:\users\luke\documents\git\c+plus\5003_task2a_cashpoint_skeleton_13-4\userinterface.cpp(164): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-         CashPoint.cpp
+﻿Build started 27/03/2014 12:42:38.
+     1>Project "C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt 5003_Ass2_Main.cpp CashPoint.cpp CurrentAccount.cpp
+         5003_Ass2_Main.cpp
+         Generating Code...
+         Compiling...
+         CurrentAccount.cpp
          Generating Code...
          Skipping... (no relevant changes detected)
-         5003_Ass2_Main.cpp
+         CashPoint.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Luke\Documents\Git\C+plus\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Luke\Documents\Git\C+plus\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Luke\Documents\Git\C+plus\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.lib" /MACHINE:X86 Debug\5003_Ass2_Main.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.lib" /MACHINE:X86 Debug\5003_Ass2_Main.obj
          Debug\BankAccount.obj
          Debug\CashCard.obj
          Debug\CashPoint.obj
@@ -24,12 +23,9 @@
          Debug\Transaction.obj
          Debug\TransactionList.obj
          Debug\UserInterface.obj
-         5003_Task2a_CashPoint_Skeleton.vcxproj -> C:\Users\Luke\Documents\Git\C+plus\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\5003_Task2a_CashPoint_Skeleton.unsuccessfulbuild".
-         Touching "Debug\5003_Task2a_CashPoint_Skeleton.lastbuildstate".
-     1>Done Building Project "C:\Users\Luke\Documents\Git\C+plus\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" (Build target(s)).
+         5003_Task2a_CashPoint_Skeleton.vcxproj -> C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.exe
+     1>Done Building Project "C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.23
+Time Elapsed 00:00:06.42

@@ -10,6 +10,9 @@
 
 #include "CashCard.h"
 #include "BankAccount.h"
+#include "CurrentAccount.h"
+#include "ChildAccount.h"
+#include "ISAAccount.h"
 #include "UserInterface.h"
 
 #include <fstream>
@@ -27,6 +30,7 @@ private:
     BankAccount* p_theActiveAccount_;
 	BankAccount* p_theTransferAccount_;
     CashCard* p_theCashCard_;
+	CurrentAccount* p_CurrentAccount_;
     const UserInterface theUI_;
 
 	//support functions
@@ -59,6 +63,10 @@ private:
 	void m8_clearTransactionsUpToDate() const;
 	//option 9
 	void m9_transferCashToAnotherAccount();
+
+	//current account functions
+	void requestOverdraftLimit();
+
     //support file handling functions & creation of dynamic objects
 
 	void searchTransactions() const;

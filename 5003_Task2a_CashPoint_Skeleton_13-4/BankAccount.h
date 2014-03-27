@@ -23,7 +23,7 @@ public:
     BankAccount( const string& typ, const string& acctNum, const string& sCode,
                           const Date& cD, double b,
                           const TransactionList& trList);
-    ~BankAccount();
+    virtual ~BankAccount();
 
 	//getter (assessor) functions
 	const string getAccountType() const;
@@ -37,21 +37,23 @@ public:
 	void produceAllDepositTransactions(string&, double&);
 	void showAllDepositsOnScreen(bool& b, string& s, double& d) const;
 	//functions to put data into and get data from streams
-	ostream& putDataInStream( ostream& os) const;
-	istream& getDataFromStream( istream& is);
+	virtual ostream& putDataInStream( ostream& os) const;
+	virtual istream& getDataFromStream( istream& is);
+	virtual void setBADetails(const string& accT, const int& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr);
 
 	//other operations
-	const string prepareFormattedStatement() const;
-	const string prepareFormattedMiniStatement(int numOfTr) const;
+	virtual const string prepareFormattedStatement() const;
+	virtual const string prepareFormattedMiniStatement(int numOfTr) const;
 
-    void recordDeposit( double amount);
+    virtual void recordDeposit( double amount);
+	virtual void addTransaction(Transaction tr);
 	void recordDeletionOfTransactionUpToDate(const Date& date);
 
-	double borrowable() const;
-	bool canWithdraw( double amount) const;
-	bool canTransferOut(double amount) const;
-	bool canTransferIn(double amount) const;
-    void recordWithdrawal( double amount);
+	virtual double borrowable() const;
+	virtual bool canWithdraw( double amount) const;
+	virtual bool canTransferOut(double amount) const;
+	virtual bool canTransferIn(double amount) const;
+    virtual void recordWithdrawal( double amount);
 	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
 	void recordTransferOut(const double& amount, const string& tAN, const string& tSC);
 	void clearTransactions(TransactionList tr);
@@ -62,6 +64,8 @@ public:
 	string m7a_showTransactionsForAmount(double amount); //lukes question 7
 	string m7b_showTransactionsForTitle(string title);   //
 	string m7c_showTransactionsForDate(Date date);     //
+	virtual const TransactionList getRequestedNumberOfTransactions(int numOfTr) const;
+	void updateBalance( double amount);
 private:
     //data items
     string accountType_;
@@ -72,10 +76,10 @@ private:
     TransactionList transactions_;
  
 	//support functions
-	void updateBalance( double amount);
-	const string prepareFormattedAccountDetails() const;
-	const string prepareFormattedMiniAccountDetails(int numOfTr) const;
-	const TransactionList getRequestedNumberOfTransactions(int numOfTr) const;
+	
+	virtual const string prepareFormattedAccountDetails() const;
+	virtual const string prepareFormattedMiniAccountDetails(int numOfTr) const;
+	
 };
 
 //---------------------------------------------------------------------------

@@ -94,6 +94,11 @@ void BankAccount::recordDeposit( double amountToDeposit) {
     updateBalance( amountToDeposit);			//increase balance_
 }
 
+void BankAccount::addTransaction(Transaction tr)
+{
+	transactions_.addNewTransaction(tr);
+}
+
 void BankAccount::recordDeletionOfTransactionUpToDate(const Date& date) 
 {
 	transactions_.deleteTransactionsUpToDate(date);
@@ -223,6 +228,16 @@ istream& BankAccount::getDataFromStream( istream& is) {
 	is >> balance_;							//get balance_
 	is >> transactions_;					//get all transactions (if any)
 	return is;
+}
+
+void BankAccount::setBADetails(const string& accT, const int& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr)
+{
+	accountType_ = accT;
+	accountNumber_ = accN;
+	sortCode_ = sC;
+	creationDate_ = cDate;
+	balance_ = bal;
+	transactions_ = tr;
 }
 
 //---------------------------------------------------------------------------

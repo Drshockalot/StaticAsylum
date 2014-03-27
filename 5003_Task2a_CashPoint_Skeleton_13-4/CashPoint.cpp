@@ -169,6 +169,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 9: m9_transferCashToAnotherAccount();
 				break;
+		case 10: requestOverdraftLimit();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -265,6 +267,13 @@ void CashPoint::m9_transferCashToAnotherAccount()
 	}
 }
 
+void CashPoint::requestOverdraftLimit()
+{
+	p_CurrentAccount_ = dynamic_cast<CurrentAccount*>(p_theActiveAccount_);
+	double oD = p_CurrentAccount_->getOverdraftLimit();
+	theUI_.showOverdraftLimitOnScreen(oD);
+}
+
 //------private file functions
 
 bool CashPoint::canOpenFile( const string& st) const {
@@ -315,7 +324,7 @@ void CashPoint::releaseCashCard() {
 int CashPoint::checkAccountType( const string& aBAFileName) const {
     //(simply) identify type/class of account from the account number
     //start with 0 for bank account, 1 for current account, 2 for saving account, etc.
-	return( atoi( aBAFileName.substr( 8, 1).c_str()));
+	return( atoi( aBAFileName.substr( 13, 1).c_str()));
 }
 
 BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
@@ -324,12 +333,42 @@ BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
     //effectively create the active bank account instance of the appropriate class
 	//& store the appropriate data read from the file
 	BankAccount* p_BA( nullptr);
+	CurrentAccount* p_CA( nullptr);
+	SavingsAccount* p_SA( nullptr);
+	ChildAccount* p_ChA( nullptr);
+	ISAAccount* p_IA( nullptr);
+
 	switch( accType)
     {
      	case BANKACCOUNT_TYPE:	//NOT NEEDED WITH ABSTRACT CLASSES
         	cout << "\n-------BANK-------\n";
     		p_BA = new BankAccount;    //points to a BankAccount object
        		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
+			return p_BA;
+			break;
+		case CURRENTACCOUNT_TYPE:
+			cout << "\n-------CURRENT-------\n";
+			p_CA = new CurrentAccount;
+			p_CA->readInBankAccountFromFile( aBAFileName);
+			return p_CA;
+			break;
+		case SAVINGSACCOUNT_TYPE:
+			cout << "\n-------SAVINGS-------\n";
+			p_SA = new SavingsAccount;
+			p_SA->readInBankAccountFromFile( aBAFileName);
+			return p_SA;
+			break;
+		case CHILDACCOUNT_TYPE:
+			cout << "\n-------CHILD-------\n";
+			p_ChA = new ChildAccount;
+			p_ChA->readInBankAccountFromFile( aBAFileName);
+			return p_ChA;
+			break;
+		case ISAACCOUNT_TYPE:
+			cout << "\n-------ISA-------\n";
+			p_IA = new ISAAccount;
+			p_IA->readInBankAccountFromFile( aBAFileName);
+			return p_IA;
 			break;
     }
 	//use dynamic memory allocation: the bank account created will have to be released in releaseBankAccount

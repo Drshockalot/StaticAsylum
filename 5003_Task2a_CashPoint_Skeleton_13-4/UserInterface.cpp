@@ -242,6 +242,12 @@ void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK
 		cout << "\nTRANSACTION UNSUCCESSFUL";
 }
 
+void UserInterface::showOverdraftLimitOnScreen(const double& oD) const
+{
+	cout << "\nOVERDRAFT LIMIT: \n";
+	cout << oD;
+}
+
 //---------------------------------------------------------------------------
 //private support member functions
 //---------------------------------------------------------------------------
