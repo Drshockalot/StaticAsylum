@@ -20,9 +20,7 @@ class BankAccount {
 public:
     //constructors & destructor
 	BankAccount();
-    BankAccount( const string& typ, const string& acctNum, const string& sCode,
-                          const Date& cD, double b,
-                          const TransactionList& trList);
+    BankAccount( const string& typ, const string& acctNum, const string& sCode, const Date& cD, double b, const TransactionList& trList);
     ~BankAccount();
 
 	//getter (assessor) functions
@@ -59,9 +57,17 @@ public:
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;
 
-	string m7a_showTransactionsForAmount(double amount); //lukes question 7
-	string m7b_showTransactionsForTitle(string title);   //
-	string m7c_showTransactionsForDate(Date date);     //
+	template <typename T> string m7a_showTransactionsForAmount(T amount)
+	{
+		ostringstream os;
+		TransactionList results(transactions_.getTransactionsForAmount(amount));
+		if ( ! results.size() == 0)
+			os << "\n\n"<< results.size() <<" TRANSACTIONS FOUND\n" << results.toFormattedString();	//one per line
+		else
+			os << "\n\nNO TRANSACTION IN BANK ACCOUNT MATCH THE SEARCH CRITERION GIVEN!";
+		return ( os.str());
+	}
+
 private:
     //data items
     string accountType_;

@@ -359,11 +359,11 @@ void CashPoint::searchTransactions() const
 		break;
 	case 2: 
 		title = theUI_.readInSearchAmount<string>();
-		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7b_showTransactionsForTitle(title));
+		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(title));
 		break;
 	case 3: 
 		Date date = theUI_.readInSearchAmount<Date>();
-		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7c_showTransactionsForDate(date));
+		theUI_.showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(date));
 		break;
 	}
 }

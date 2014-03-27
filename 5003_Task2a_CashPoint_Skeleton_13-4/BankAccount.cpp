@@ -96,7 +96,8 @@ void BankAccount::recordDeposit( double amountToDeposit) {
 
 void BankAccount::recordDeletionOfTransactionUpToDate(const Date& date) 
 {
-	transactions_.deleteTransactionsUpToDate(date);
+	TransactionList copy(transactions_);
+	transactions_.deleteTransactionsUpToDate(date,copy);
 }
 
 double BankAccount::borrowable() const {
@@ -255,38 +256,6 @@ const string BankAccount::prepareFormattedMiniAccountDetails(int numOfTr) const
 	os << fixed << setprecision(2) << setfill(' ');
 	os << "\nBALANCE:         \234" << setw(10) << balance_;	//display balance
 	return os.str();
-}
-
-string BankAccount::m7a_showTransactionsForAmount(double amount)
-{
-	ostringstream os;
-	TransactionList results(transactions_.getTransactionsForAmount(amount));
-	if ( ! results.size() == 0)
-		os << "\n\n"<< results.size() <<" TRANSACTIONS FOUND\n" << results.toFormattedString();	//one per line
-	else
-		os << "\n\nNO TRANSACTION IN BANK ACCOUNT MATCH THE SEARCH CRITERION GIVEN!";
-	return ( os.str());
-
-}
-string BankAccount::m7b_showTransactionsForTitle(string title)
-{
-	ostringstream os;
-	TransactionList results(transactions_.getTransactionsForTitle(title));
-	if( ! results.size() == 0)
-		os << "\n\n" << results.size() << " TRANSACTIONS FOUND\n" << results.toFormattedString();
-	else
-		os << "\n\nNO TRANSACTION IN BANK ACCOUNT MATCH THE SEARCH CRITERION GIVEN!";
-	return(os.str());
-}
-string BankAccount::m7c_showTransactionsForDate(Date date)
-{
-	ostringstream os;
-	TransactionList results(transactions_.getTransactionsForDate(date));
-	if( ! results.size() == 0)
-		os << "\n\n" << results.size() << " TRANSACTIONS FOUND\n" << results.toFormattedString();
-	else
-		os << "\n\nNO TRANSACTION IN BANK ACCOUNT MATCH THE SEARCH CRITERION GIVEN!";
-	return(os.str());
 }
 //---------------------------------------------------------------------------
 //non-member operator functions

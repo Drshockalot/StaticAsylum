@@ -26,12 +26,25 @@ public:
 	TransactionList getAllDepositTransactions();
 	double getTotalTransactions() const;
 	TransactionList getTransactionsUpToDate(const Date& date) const;
-	void deleteTransactionsUpToDate(const Date& date);
+	void deleteTransactionsUpToDate(const Date& date, TransactionList copy);
 	void addTransaction(const Transaction tr);
-	TransactionList getTransactionsForAmount(const double amount);
-	TransactionList getTransactionsForTitle(const string title);
-	TransactionList getTransactionsForDate(const Date date);
-
+	template <typename T> TransactionList getTransactionsForAmount(const T amount)
+	{
+		TransactionList copy(*this);
+		TransactionList temp;
+		for(int i = 0 ; i < (*this).size() ; ++i)
+		{
+			if(copy.size() > 0)
+			{
+				if(copy.newestTransaction().getValue<T>() == amount)
+				{
+					temp.addTransaction(copy.newestTransaction());
+				}
+				copy.deleteFirstTransaction();
+			}
+		}
+		return temp;
+	}
 	const string toFormattedString() const;		//return transactionlist as a (formatted) string
 	ostream& putDataInStream( ostream& os) const;	//send TransactionList info into an output stream
 	istream& getDataFromStream( istream& is);	//receive TransactionList info from an input stream

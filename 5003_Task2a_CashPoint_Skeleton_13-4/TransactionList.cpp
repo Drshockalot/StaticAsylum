@@ -41,14 +41,21 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 	}
 }
 
-void TransactionList::deleteTransactionsUpToDate(const Date& date)
+void TransactionList::deleteTransactionsUpToDate(const Date& date, TransactionList copy)
 {
-	TransactionList copy(*this);
-	while(copy.size() > 0)
+	//TransactionList copy(*this);
+	if (copy.size() <= 0)
 	{
-		if(copy.newestTransaction().getDate() <= date)
+		return;
+	}
+	else
+	{
+		if(copy.newestTransaction().getValue<Date>() <= date)
+		{
 			this->deleteGivenTransaction(copy.newestTransaction());
-		copy.deleteFirstTransaction();
+			copy.deleteFirstTransaction();
+			deleteTransactionsUpToDate(date, copy);
+		}
 	}
 }
 
@@ -96,7 +103,7 @@ TransactionList TransactionList::getAllDepositTransactions()
 	TransactionList temp;
 	while (copy.size() > 0)
 	{
-		if(copy.newestTransaction().getAmount() > 0)
+		if(copy.newestTransaction().getValue<double>() > 0)
 			temp.addTransaction(copy.newestTransaction());
 		copy.deleteFirstTransaction();
 	}
@@ -109,7 +116,7 @@ double TransactionList::getTotalTransactions() const
 	TransactionList copy(*this);
 	for(int i = 0 ; i < size() ; ++i)
 	{
-		total += copy.newestTransaction().getAmount();
+		total += copy.newestTransaction().getValue<double>();
 		copy.deleteFirstTransaction();
 	}
 
@@ -123,7 +130,7 @@ TransactionList TransactionList::getTransactionsUpToDate(const Date& date) const
 
 	while(copy.size() > 0)
 	{
-		if(copy.newestTransaction().getDate() <= date)
+		if(copy.newestTransaction().getValue<Date>() <= date)
 			temp.addTransaction(copy.newestTransaction());
 		copy.deleteFirstTransaction();
 	}
@@ -134,60 +141,6 @@ void TransactionList::addTransaction(const Transaction tr)
 {
 	listOfTransactions_.addAtEnd(tr);
 }
-TransactionList TransactionList::getTransactionsForAmount(const double amount)
-{
-	TransactionList copy(*this);
-	TransactionList temp;
-	for(int i = 0 ; i < (*this).size() ; ++i)
-	{
-		if(copy.size() > 0)
-		{
-			if(copy.newestTransaction().getAmount() == amount)
-			{
-				temp.addTransaction(copy.newestTransaction());
-			}
-			copy.deleteFirstTransaction();
-		}
-	}
-	return temp;
-}
-TransactionList TransactionList::getTransactionsForTitle(const string title)
-{
-	TransactionList copy(*this);
-	TransactionList temp;
-	for(int i = 0 ; i < (*this).size() ; ++i)
-	{
-		if(copy.size() > 0)
-		{
-			if(copy.newestTransaction().getTitle() == title)
-			{
-				temp.addTransaction(copy.newestTransaction());
-			}
-			copy.deleteFirstTransaction();
-		}
-	}
-	return temp;
-}
-TransactionList TransactionList::getTransactionsForDate(Date date)
-{
-	TransactionList copy(*this);
-	TransactionList temp;
-	for(int i = 0 ; i < (*this).size() ; ++i)
-	{
-		if(copy.size() > 0)
-		{
-			if(copy.newestTransaction().getDate() == date)
-			{
-				temp.addTransaction(copy.newestTransaction());
-			}
-			copy.deleteFirstTransaction();
-		}
-	}
-	return temp;
-}
-//---------------------------------------------------------------------------
-//non-member operator functions
-//---------------------------------------------------------------------------
 
 ostream& operator<<( ostream& os, const TransactionList& aTransactionList) {
     return ( aTransactionList.putDataInStream( os));

@@ -19,20 +19,6 @@ Transaction::Transaction( const Date& d, const Time& t, const string& s, double 
 Transaction::Transaction( const string& s, double a)
 : title_( s), amount_( a), date_( Date::currentDate()), time_( Time::currentTime()) //get date and time from system
 {}
-
-//____other public member functions
-const Date Transaction::getDate() const {
-	return date_;
-}
-const Time Transaction::getTime() const {
-	return time_;
-}
-const string Transaction::getTitle() const {
-	return title_;
-}
-double Transaction::getAmount() const {
-	return amount_;
-}
 const string Transaction::toFormattedString() const {
 //return (formatted) transaction as a string ("HH:MM:SS")
 	ostringstream os_transaction;
