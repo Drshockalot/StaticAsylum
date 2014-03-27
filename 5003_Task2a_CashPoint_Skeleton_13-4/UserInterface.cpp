@@ -52,7 +52,6 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       4                       Show statement";
 	cout << "\n       5                    Show all deposits";
 	cout << "\n       6                  Show mini statement";
-	cout << "\n       6                  Show mini statement";
 	cout << "\n       7          Search account transactions";
 	cout << "\n       8    Clear all transactions up to date";
 	cout << "\n       9          Transfer to another account  //TO BE IMPLEMENTED FOR ASS 2";

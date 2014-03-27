@@ -96,8 +96,7 @@ void BankAccount::recordDeposit( double amountToDeposit) {
 
 void BankAccount::recordDeletionOfTransactionUpToDate(const Date& date) 
 {
-	TransactionList copy(transactions_);
-	transactions_.deleteTransactionsUpToDate(date,copy);
+	transactions_.deleteTransactionsUpToDate(date);
 }
 
 double BankAccount::borrowable() const {

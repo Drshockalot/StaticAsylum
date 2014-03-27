@@ -41,20 +41,25 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 	}
 }
 
-void TransactionList::deleteTransactionsUpToDate(const Date& date, TransactionList copy)
+void TransactionList::deleteTransactionsUpToDate(const Date& date)
 {
-	//TransactionList copy(*this);
-	if (copy.size() <= 0)
+	//assert(size() != 0);
+	if(size() <= 0)
 	{
-		return;
 	}
 	else
 	{
-		if(copy.newestTransaction().getValue<Date>() <= date)
+		if (newestTransaction().getValue<Date>() <= date)
 		{
-			this->deleteGivenTransaction(copy.newestTransaction());
-			copy.deleteFirstTransaction();
-			deleteTransactionsUpToDate(date, copy);
+			*this = olderTransactions();
+			this->deleteTransactionsUpToDate(date);
+		}
+		else
+		{
+			Transaction firstTr(newestTransaction());
+			this->deleteFirstTransaction();
+			this->deleteTransactionsUpToDate(date);
+			this->addNewTransaction(firstTr);
 		}
 	}
 }
@@ -123,18 +128,37 @@ double TransactionList::getTotalTransactions() const
 	return total;
 }
 
-TransactionList TransactionList::getTransactionsUpToDate(const Date& date) const
+TransactionList TransactionList::getTransactionsUpToDate(const Date& date)
 {
-	TransactionList copy(*this);
-	TransactionList temp;
-
-	while(copy.size() > 0)
+	if(size() <= 0)
 	{
-		if(copy.newestTransaction().getValue<Date>() <= date)
-			temp.addTransaction(copy.newestTransaction());
-		copy.deleteFirstTransaction();
 	}
-	return temp;
+	else
+	{
+		if (newestTransaction().getValue<Date>() <= date)
+		{
+			*this = olderTransactions();
+			this->getTransactionsUpToDate(date);
+		}
+		else
+		{
+			Transaction firstTr(newestTransaction());
+			this->deleteFirstTransaction();
+			this->getTransactionsUpToDate(date);
+			this->addNewTransaction(firstTr);
+		}
+	}
+
+	//TransactionList copy(*this);
+	//TransactionList temp;
+
+	//while(copy.size() > 0)
+	//{
+	//	if(copy.newestTransaction().getValue<Date>() <= date)
+	//		temp.addTransaction(copy.newestTransaction());
+	//	copy.deleteFirstTransaction();
+	//}
+	//return temp;
 }
 
 void TransactionList::addTransaction(const Transaction tr)
