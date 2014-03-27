@@ -23,10 +23,22 @@ public:
 	Transaction( const Date&, const Time&, const string&, double);	//constructor
     Transaction( const string&, double);   //constructor
 
-	const Date getDate() const;		//return transaction date_
-	const Time getTime() const;		//return transaction time_
-	const string getTitle() const;	//return transaction title_
-	double getAmount() const;	//return transaction amount
+	template <typename T> const T getValue() const
+	{
+		return date_;
+	}
+	template <> const Time getValue<Time>() const
+	{
+		return time_;
+	}
+	template <> const string getValue<string>() const
+	{
+		return title_;
+	}
+	template <> const double getValue<double>() const
+	{
+		return amount_;
+	}
 
 	const string toFormattedString() const ;				//return transaction as a formatted string
 	ostream& putDataInStream( ostream& os) const;	//send Transaction info into an output stream

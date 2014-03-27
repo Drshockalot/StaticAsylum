@@ -25,6 +25,7 @@ public:
                           const TransactionList& trList);
     virtual ~BankAccount();
 
+
 	//getter (assessor) functions
 	const string getAccountType() const;
     const string getAccountNumber() const;
@@ -66,6 +67,17 @@ public:
 	string m7c_showTransactionsForDate(Date date);     //
 	virtual const TransactionList getRequestedNumberOfTransactions(int numOfTr) const;
 	void updateBalance( double amount);
+	template <typename T> string m7a_showTransactionsForAmount(T amount)
+	{
+		ostringstream os;
+		TransactionList results(transactions_.getTransactionsForAmount(amount));
+		if ( ! results.size() == 0)
+			os << "\n\n"<< results.size() <<" TRANSACTIONS FOUND\n" << results.toFormattedString();	//one per line
+		else
+			os << "\n\nNO TRANSACTION IN BANK ACCOUNT MATCH THE SEARCH CRITERION GIVEN!";
+		return ( os.str());
+	}
+
 private:
     //data items
     string accountType_;
