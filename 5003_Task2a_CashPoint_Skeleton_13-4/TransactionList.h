@@ -25,7 +25,7 @@ public:
 	int    size() const;
 	TransactionList getAllDepositTransactions();
 	double getTotalTransactions() const;
-	TransactionList getTransactionsUpToDate(const Date& date);
+	TransactionList getTransactionsUpToDate(const Date& date, TransactionList temp);
 	void deleteTransactionsUpToDate(const Date& date);
 	void addTransaction(const Transaction tr);
 	template <typename T> TransactionList getTransactionsForAmount(const T amount)

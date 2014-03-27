@@ -128,37 +128,26 @@ double TransactionList::getTotalTransactions() const
 	return total;
 }
 
-TransactionList TransactionList::getTransactionsUpToDate(const Date& date)
+TransactionList TransactionList::getTransactionsUpToDate(const Date& date, TransactionList temp)
 {
-	//if(size() <= 0)
-	//{
-	//}
-	//else
-	//{
-	//	if (newestTransaction().getValue<Date>() <= date)
-	//	{
-	//		*this = olderTransactions();
-	//		this->getTransactionsUpToDate(date);
-	//	}
-	//	else
-	//	{
-	//		Transaction firstTr(newestTransaction());
-	//		this->deleteFirstTransaction();
-	//		this->getTransactionsUpToDate(date);
-	//		this->addNewTransaction(firstTr);
-	//	}
-	//}
-
-	TransactionList copy(*this);
-	TransactionList temp;
-
-	while(copy.size() > 0)
+		if(temp.size() <= 0) // checks size to exit function
 	{
-		if(copy.newestTransaction().getValue<Date>() <= date)
-			temp.addTransaction(copy.newestTransaction());
-		copy.deleteFirstTransaction();
+		TransactionList fuckyou;
+		return fuckyou;
 	}
-	return temp;
+	else
+	{
+		if(temp.newestTransaction().getValue<Date>() <= date)
+		{
+			return temp;
+		}
+		else
+		{
+			temp.deleteFirstTransaction();
+			TransactionList test(getTransactionsUpToDate(date, temp));
+			return test;
+		}
+	}
 }
 
 void TransactionList::addTransaction(const Transaction tr)

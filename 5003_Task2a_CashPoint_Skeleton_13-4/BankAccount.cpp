@@ -54,7 +54,8 @@ const TransactionList BankAccount::getTransactions() const {
 
 const void BankAccount::produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr)
 {
-	TransactionList trl = transactions_.getTransactionsUpToDate(date);
+	TransactionList temp(transactions_);
+	TransactionList trl = transactions_.getTransactionsUpToDate(date, temp);
 	numOfTr = trl.size();
 	str = trl.toFormattedString();
 }
