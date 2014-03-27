@@ -52,7 +52,7 @@ const TransactionList BankAccount::getTransactions() const {
     return transactions_;
 }
 
-const void BankAccount::produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr) const
+const void BankAccount::produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr)
 {
 	TransactionList trl = transactions_.getTransactionsUpToDate(date);
 	numOfTr = trl.size();

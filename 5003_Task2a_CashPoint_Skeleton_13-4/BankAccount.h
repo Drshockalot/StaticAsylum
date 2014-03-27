@@ -33,7 +33,7 @@ public:
     const Date getCreationDate() const;
 	double getBalance() const;
     const TransactionList getTransactions() const;
-	const void produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr) const;
+	const void produceTransactionsUpToDate(const Date& date, string& str, int& numOfTr);
     bool	isEmptyTransactionList() const;
 	void produceAllDepositTransactions(string&, double&);
 	void showAllDepositsOnScreen(bool& b, string& s, double& d) const;

@@ -1,16 +1,14 @@
-﻿Build started 27/03/2014 12:54:15.
+﻿Build started 27/03/2014 12:57:31.
      1>Project "C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt 5003_Ass2_Main.cpp BankAccount.cpp CashPoint.cpp CurrentAccount.cpp
-         CurrentAccount.cpp
-         CashPoint.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt BankAccount.cpp TransactionList.cpp
+         TransactionList.cpp
          BankAccount.cpp
      1>c:\users\chad\homeprojects\gitrepos\staticasylum\5003_task2a_cashpoint_skeleton_13-4\bankaccount.cpp(57): error C2662: 'TransactionList::getTransactionsUpToDate' : cannot convert 'this' pointer from 'const TransactionList' to 'TransactionList &'
                  Conversion loses qualifiers
-         5003_Ass2_Main.cpp
          Generating Code...
      1>Done Building Project "C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:08.20
+Time Elapsed 00:00:03.89
