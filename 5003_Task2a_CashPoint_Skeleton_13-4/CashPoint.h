@@ -32,6 +32,7 @@ private:
     CashCard* p_theCashCard_;
 	CurrentAccount* p_CurrentAccount_;
 	SavingsAccount* p_SavingsAccount_;
+	ChildAccount* p_ChildAccount_;
     const UserInterface theUI_;
 
 	//support functions
@@ -70,6 +71,9 @@ private:
 
 	//savings account functions
 	void requestMinimumBalance();
+
+	//child account functions
+	void requestDepositConstraints();
 
     //support file handling functions & creation of dynamic objects
 

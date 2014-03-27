@@ -1,9 +1,10 @@
-﻿Build started 27/03/2014 15:21:19.
+﻿Build started 27/03/2014 16:39:58.
      1>Project "C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\5003_Task2a_CashPoint_Skeleton.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CurrentAccount.cpp SavingsAccount.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ChildAccount.cpp CurrentAccount.cpp SavingsAccount.cpp
          SavingsAccount.cpp
          CurrentAccount.cpp
+         ChildAccount.cpp
          Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\HomeProjects\GitRepos\StaticAsylum\5003_Task2a_CashPoint_Skeleton_13-4\Debug\5003_Task2a_CashPoint_Skeleton.lib" /MACHINE:X86 Debug\5003_Ass2_Main.obj
@@ -24,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.80
+Time Elapsed 00:00:07.20

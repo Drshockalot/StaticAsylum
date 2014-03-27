@@ -11,6 +11,7 @@ public:
 	SavingsAccount();
 	virtual ~SavingsAccount();
 	double getMinimumBalance() const;
+	void setMinimumBalance(const double& mB);
 
 	virtual ostream& putDataInStream( ostream& os) const;
 	virtual istream& getDataFromStream( istream& is);

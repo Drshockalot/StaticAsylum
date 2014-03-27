@@ -243,6 +243,34 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				default:theUI_.showErrorInvalidCommand();
 			}
 			break;
+		case 3:
+			switch ( option)
+			{
+				case 1:	m1_produceBalance();
+						break;
+				case 2: m2_withdrawFromBankAccount();
+ 						break;
+				case 3:	m3_depositToBankAccount();
+						break;
+				case 4:	m4_produceStatement();
+						break;
+				case 5: m5_showAllDepositTransactions();
+						break;
+				case 6: m6_showMiniStatement();
+						break;
+				case 7: m7_searchForTransactions();
+						break;
+				case 8: m8_clearTransactionsUpToDate();
+						break;
+				case 9: m9_transferCashToAnotherAccount();
+						break;
+				case 10: requestMinimumBalance();
+						break;
+				case 11: requestDepositConstraints();
+						break;
+				default:theUI_.showErrorInvalidCommand();
+			}
+			break;
 	}
 }
 //------ menu options
@@ -264,8 +292,19 @@ void CashPoint::m2_withdrawFromBankAccount() {
 //---option 3
 void CashPoint::m3_depositToBankAccount() {
     double amountToDeposit( theUI_.readInDepositAmount());
-    p_theActiveAccount_->recordDeposit( amountToDeposit);
-    theUI_.showDepositOnScreen( true, amountToDeposit);
+	if(typeid(*p_theActiveAccount_) == typeid(ChildAccount))
+	{
+		p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
+		bool depAuth = p_ChildAccount_->canDeposit(amountToDeposit);
+		if(depAuth)
+			p_ChildAccount_->recordDeposit( amountToDeposit);
+		theUI_.showDepositOnScreen( depAuth, amountToDeposit);
+	}
+	else
+	{
+		p_theActiveAccount_->recordDeposit( amountToDeposit);
+		theUI_.showDepositOnScreen( true, amountToDeposit);
+	}
 }
 //---option 4
 void CashPoint::m4_produceStatement() const {
@@ -350,6 +389,14 @@ void CashPoint::requestMinimumBalance()
 	p_SavingsAccount_ = dynamic_cast<SavingsAccount*>(p_theActiveAccount_);
 	double mB = p_SavingsAccount_->getMinimumBalance();
 	theUI_.showMinimumBalanceOnScreen(mB);
+}
+
+void CashPoint::requestDepositConstraints()
+{
+	p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
+	double minPI = p_ChildAccount_->getMinimumPaidIn();
+	double maxPI = p_ChildAccount_->getMaximumPaidIn();
+	theUI_.showDepositConstraintsOnScreen(minPI, maxPI);
 }
 
 //------private file functions

@@ -113,7 +113,7 @@ void CurrentAccount::recordDeposit( double amount)
 
 bool CurrentAccount::canTransferOut(double amount) const
 {
-	return (amount < getBalance());
+	return (amount <= getBalance());
 }
 
 bool CurrentAccount::canTransferIn(double amount) const

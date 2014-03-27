@@ -12,6 +12,11 @@ double SavingsAccount::getMinimumBalance() const
 	return minimumBalance;
 }
 
+void SavingsAccount::setMinimumBalance(const double& mB)
+{
+	minimumBalance = mB;
+}
+
 ostream& SavingsAccount::putDataInStream( ostream& os) const
 {
 	os << getAccountType() << "\n";				//put account type
@@ -113,7 +118,7 @@ void SavingsAccount::recordDeposit( double amount)
 
 bool SavingsAccount::canTransferOut(double amount) const
 {
-	return (amount < (getBalance() - minimumBalance));
+	return (amount <= (getBalance() - minimumBalance));
 }
 
 bool SavingsAccount::canTransferIn(double amount) const
