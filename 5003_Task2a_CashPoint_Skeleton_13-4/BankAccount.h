@@ -62,9 +62,6 @@ public:
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;
 
-	string m7a_showTransactionsForAmount(double amount); //lukes question 7
-	string m7b_showTransactionsForTitle(string title);   //
-	string m7c_showTransactionsForDate(Date date);     //
 	virtual const TransactionList getRequestedNumberOfTransactions(int numOfTr) const;
 	void updateBalance( double amount);
 	template <typename T> string m7a_showTransactionsForAmount(T amount)
