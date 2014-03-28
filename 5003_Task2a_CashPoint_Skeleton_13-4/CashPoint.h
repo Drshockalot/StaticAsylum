@@ -33,6 +33,7 @@ private:
 	CurrentAccount* p_CurrentAccount_;
 	SavingsAccount* p_SavingsAccount_;
 	ChildAccount* p_ChildAccount_;
+	ISAAccount* p_ISAAccount_;
     const UserInterface theUI_;
 
 	//support functions
@@ -74,6 +75,9 @@ private:
 
 	//child account functions
 	void requestDepositConstraints();
+
+	//isa account functions
+	void requestIsaDetails();
 
     //support file handling functions & creation of dynamic objects
 

@@ -271,6 +271,34 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				default:theUI_.showErrorInvalidCommand();
 			}
 			break;
+		case 4:
+			switch ( option)
+			{
+				case 1:	m1_produceBalance();
+						break;
+				case 2: m2_withdrawFromBankAccount();
+ 						break;
+				case 3:	m3_depositToBankAccount();
+						break;
+				case 4:	m4_produceStatement();
+						break;
+				case 5: m5_showAllDepositTransactions();
+						break;
+				case 6: m6_showMiniStatement();
+						break;
+				case 7: m7_searchForTransactions();
+						break;
+				case 8: m8_clearTransactionsUpToDate();
+						break;
+				case 9: m9_transferCashToAnotherAccount();
+						break;
+				case 10: requestMinimumBalance();
+						break;
+				case 11: requestIsaDetails();
+						break;
+				default:theUI_.showErrorInvalidCommand();
+			}
+			break;
 	}
 }
 //------ menu options
@@ -299,6 +327,14 @@ void CashPoint::m3_depositToBankAccount() {
 		if(depAuth)
 			p_ChildAccount_->recordDeposit( amountToDeposit);
 		theUI_.showDepositOnScreen( depAuth, amountToDeposit);
+	}
+	else if(typeid(*p_theActiveAccount_) == typeid(ISAAccount))
+	{
+		p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
+		bool depAuth = p_ISAAccount_->canDeposit(amountToDeposit);
+		if(depAuth)
+			p_ISAAccount_->recordDeposit(amountToDeposit);
+		theUI_.showDepositOnScreen(depAuth, amountToDeposit);
 	}
 	else
 	{
@@ -397,6 +433,15 @@ void CashPoint::requestDepositConstraints()
 	double minPI = p_ChildAccount_->getMinimumPaidIn();
 	double maxPI = p_ChildAccount_->getMaximumPaidIn();
 	theUI_.showDepositConstraintsOnScreen(minPI, maxPI);
+}
+
+void CashPoint::requestIsaDetails()
+{
+	p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
+	double maxYD = p_ISAAccount_->getMaximumYearlyDeposit();
+	double currYD = p_ISAAccount_->getCurrentYearlyDeposit();
+	Date eDP = p_ISAAccount_->getEndDepositPeriod();
+	theUI_.showIsaDetailsOnScreen(maxYD, currYD, eDP);
 }
 
 //------private file functions

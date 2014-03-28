@@ -20,6 +20,7 @@ public:
 	virtual const string prepareFormattedAccountDetails() const;
 	virtual const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 
+	virtual bool canDeposit(const double& amount) const;
 	virtual double borrowable() const;
 	virtual bool canWithdraw( double amount) const;
 	virtual void recordDeposit( double amount);

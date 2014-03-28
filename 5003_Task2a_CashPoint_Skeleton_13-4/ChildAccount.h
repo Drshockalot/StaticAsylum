@@ -12,7 +12,7 @@ public:
 	virtual ~ChildAccount();
 	double getMinimumPaidIn() const;
 	double getMaximumPaidIn() const;
-	bool canDeposit(const double& amount) const;
+	virtual bool canDeposit(const double& amount) const;
 
 	virtual ostream& putDataInStream( ostream& os) const;
 	virtual istream& getDataFromStream( istream& is);

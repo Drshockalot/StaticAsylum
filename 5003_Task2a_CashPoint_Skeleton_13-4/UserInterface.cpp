@@ -126,6 +126,22 @@ void UserInterface::showAccountProcessingMenu(const string& accType) const {
 				cout << "\n         ________________________________________";
 			break;
 		case 4:
+				cout << "\n\n\n      ________________________________________";
+				cout << "\n      ________ACCOUNT PROCESSING MENU________";
+				cout << "\n      ________________________________________";
+				cout << "\n       0 End account processing & remove card";
+				cout << "\n       1                      Display balance";
+				cout << "\n       2                Withdraw from account";
+				cout << "\n       3                 Deposit into account";
+				cout << "\n       4                       Show statement";
+				cout << "\n       5                    Show all deposits";
+				cout << "\n       6                  Show mini statement";
+				cout << "\n       7          Search account transactions";
+				cout << "\n       8    Clear all transactions up to date";
+				cout << "\n       9          Transfer to another account";
+				cout << "\n       10             Display Minimum Balance";
+				cout << "\n		  11		 Display ISA Account Details";
+				cout << "\n         ________________________________________";
 			break;
 	}
 		
@@ -332,6 +348,17 @@ void UserInterface::showDepositConstraintsOnScreen(const double& minIP, const do
 	cout << minIP;
 	cout << "\nMAXIMUM PAID IN RESTRICTION: ";
 	cout << maxIP;
+}
+
+void UserInterface::showIsaDetailsOnScreen(const double& maxYD, const double& currYD, const Date& eOD) const
+{
+	cout << "\nISA ACCOUNT DETAILS: ";
+	cout << "\nMAXIMUM YEARLY DEPOSIT: ";
+	cout << maxYD;
+	cout << "\nCURRENT YEARLY DEPOSIT: ";
+	cout << currYD;
+	cout << "\nEND DEPOSIT DATE: ";
+	cout << eOD;
 }
 
 //---------------------------------------------------------------------------

@@ -52,6 +52,7 @@ public:
 	void	showOverdraftLimitOnScreen(const double& oD) const;
 	void	showMinimumBalanceOnScreen(const double& mB) const;
 	void	showDepositConstraintsOnScreen(const double& minPI, const double& maxPI) const;
+	void	showIsaDetailsOnScreen(const double& maxYD, const double& currYD, const Date& eOD) const;
 	Date	readInValidDate(const Date& date) const;
 
 	void	showNoTransactionsOnScreen() const;

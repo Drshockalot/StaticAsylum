@@ -130,7 +130,7 @@ double TransactionList::getTotalTransactions() const
 
 TransactionList TransactionList::getTransactionsUpToDate(const Date& date, TransactionList temp)
 {
-		if(temp.size() <= 0) // checks size to exit function
+	if(temp.size() <= 0) // checks size to exit function
 	{
 		TransactionList fuckyou;
 		return fuckyou;

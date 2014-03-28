@@ -7,6 +7,11 @@ SavingsAccount::SavingsAccount()
 SavingsAccount::~SavingsAccount()
 {}
 
+bool SavingsAccount::canDeposit(const double& amount) const
+{
+	return true;
+}
+
 double SavingsAccount::getMinimumBalance() const
 {
 	return minimumBalance;
