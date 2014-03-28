@@ -31,7 +31,7 @@ void ISAAccount::updateCurrentYearlyDeposit(const double& a)
 
 bool ISAAccount::canDeposit(const double& amount) const
 {
-	return (((amount + currentYearlyDeposit) < maximumYearlyDeposit) && (Date::currentDate() < endDepositPeriod));
+	return (((amount + currentYearlyDeposit) < maximumYearlyDeposit) && (Date::currentDate() <= endDepositPeriod));
 }
 
 ostream& ISAAccount::putDataInStream( ostream& os) const
@@ -144,6 +144,7 @@ void ISAAccount::recordDeposit( double amount)
 	Transaction aTransaction( "deposit_to_ATM", amount);
     //update active bankaccount
     addTransaction( aTransaction);		//update transactions_
+	updateCurrentYearlyDeposit(amount);
     updateBalance( amount);			//increase balance_
 }
 
