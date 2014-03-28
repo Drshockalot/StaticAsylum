@@ -25,11 +25,10 @@ public:
 	virtual bool canTransferOut(double amount) const;
 	virtual bool canTransferIn(double amount) const;
     virtual void recordWithdrawal( double amount);
+	void recordTransferOut(const double& amount, const string& tAN, const string& tSC);
+	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
 private:
 	double overdraftLimit;
 };
-
-ostream& operator<<( ostream&, const CurrentAccount&);	//output operator
-istream& operator>>( istream&, CurrentAccount&);	    //input operator
 
 #endif

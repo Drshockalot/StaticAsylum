@@ -60,17 +60,6 @@ const void BankAccount::produceTransactionsUpToDate(const Date& date, string& st
 	str = trl.toFormattedString();
 }
 
-void BankAccount::clearTransactions(TransactionList tr)
-{
-	TransactionList deleteCopy(tr);
-	while(deleteCopy.size() > 0)
-	{
-//		if(deleteCopy.newestTransaction() == transactions_.newestTransaction())
-		transactions_.deleteGivenTransaction(deleteCopy.newestTransaction());
-		deleteCopy.deleteFirstTransaction();
-	}
-}
-
 bool BankAccount::isEmptyTransactionList() const {
 	return transactions_.size() == 0;
 }
@@ -82,17 +71,17 @@ void BankAccount::produceAllDepositTransactions(string& s, double& d)
 	s = trl.toFormattedString();
 }
 
-void BankAccount::showAllDepositsOnScreen(bool& b, string& s, double& d) const
-{
-
-}
-
 void BankAccount::recordDeposit( double amountToDeposit) {
     //create a deposit transaction
 	Transaction aTransaction( "deposit_to_ATM", amountToDeposit);
     //update active bankaccount
     transactions_.addNewTransaction( aTransaction);		//update transactions_
     updateBalance( amountToDeposit);			//increase balance_
+}
+
+void BankAccount::updateBalance(double amount)
+{
+	balance_ += amount;
 }
 
 void BankAccount::addTransaction(Transaction tr)
@@ -103,74 +92,6 @@ void BankAccount::addTransaction(Transaction tr)
 void BankAccount::recordDeletionOfTransactionUpToDate(const Date& date) 
 {
 	transactions_.deleteTransactionsUpToDate(date);
-}
-
-double BankAccount::borrowable() const {
-//return borrowable amount
-    return balance_;
-}
-bool BankAccount::canWithdraw( double amountToWithdraw ) const {
-//check if enough money in account
-    return ( amountToWithdraw <= borrowable());
-}
-
-bool BankAccount::canTransferOut(double transferAmount) const
-{
-	return (transferAmount < getBalance());
-}
-
-bool BankAccount::canTransferIn(double transferAmount) const
-{
-	return true;
-}
-
-void BankAccount::recordTransferIn(const double& amount, const string& aAN, const string& aSC)
-{
-	Transaction transferTransaction( "transfer_from_ACC_" + aAN + "_" + aSC, amount);
-
-	transactions_.addNewTransaction(transferTransaction);
-	updateBalance(amount);
-}
-
-void BankAccount::recordTransferOut(const double& amount, const string& tAN, const string& tSC)
-{
-	Transaction transferTransaction( "transfer_to_ACC_" + tAN + "_" + tSC, -amount);
-
-	transactions_.addNewTransaction(transferTransaction);
-	updateBalance(-amount);
-}
-
-void BankAccount::recordWithdrawal( double amountToWithdraw) {
-	//create a withdrawal transaction
-    Transaction aTransaction( "withdrawal_from_ATM", -amountToWithdraw);
-    //update active bankaccount
-    transactions_.addNewTransaction( aTransaction);		//update transactions_
-    updateBalance( -amountToWithdraw);			//decrease balance_
-}
-
-const string BankAccount::prepareFormattedStatement() const {
-	ostringstream os;
-	//account details
-	os << prepareFormattedAccountDetails();
-	//list of transactions (or message if empty)
-	if ( ! transactions_.size() == 0)
-		os << "\n\nLIST OF TRANSACTIONS \n"	<< transactions_.toFormattedString();	//one per line
-	else
-		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
-	return ( os.str());
-}
-
-const string BankAccount::prepareFormattedMiniStatement(int numOfTr) const
-{
-	ostringstream os;
-
-	os << prepareFormattedMiniAccountDetails(numOfTr);
-	TransactionList tr = getRequestedNumberOfTransactions(numOfTr);
-	if ( ! transactions_.size() == 0)
-		os << "\n\nLIST OF TRANSACTIONS\n" << tr.toFormattedString();	//one per line
-	else
-		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
-	return ( os.str());
 }
 
 const TransactionList BankAccount::getRequestedNumberOfTransactions(int numOfTr) const
@@ -184,7 +105,6 @@ const TransactionList BankAccount::getRequestedNumberOfTransactions(int numOfTr)
 			temp.addTransaction(copy.newestTransaction());
 			copy.deleteFirstTransaction();
 		}
-
 	}
 	return temp;
 }
@@ -209,28 +129,6 @@ void BankAccount::storeBankAccountInFile( const string& fileName) const {
 	toFile.close();			//close file: optional here
 }
 
-ostream& BankAccount::putDataInStream( ostream& os) const {
-//put (unformatted) BankAccount details in stream
-    os << accountType_ << "\n";				//put account type
-    os << accountNumber_ << "\n";			//put account number
-	os << sortCode_ << "\n";				//put sort code
-    os << creationDate_ << "\n";			//put creation date
-	os << balance_ << "\n";					//put balance
-	if (  ! transactions_.size() == 0)
-		os << transactions_;				//put all transactions, one per line
-	return os;
-}
-istream& BankAccount::getDataFromStream( istream& is) {
-//get BankAccount details from stream
-    is >> accountType_;						//get account type
-    is >> accountNumber_;					//get account number
-	is >> sortCode_;						//get sort code
- 	is >> creationDate_;					//get creation date
-	is >> balance_;							//get balance_
-	is >> transactions_;					//get all transactions (if any)
-	return is;
-}
-
 void BankAccount::setBADetails(const string& accT, const string& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr)
 {
 	accountType_ = accT;
@@ -239,38 +137,6 @@ void BankAccount::setBADetails(const string& accT, const string& accN, const str
 	creationDate_ = cDate;
 	balance_ = bal;
 	transactions_ = tr;
-}
-
-//---------------------------------------------------------------------------
-//private support member functions
-//---------------------------------------------------------------------------
-
-void BankAccount::updateBalance( double amount) {
-    balance_ += amount;   //add/take amount to/from balance_
-}
-const string BankAccount::prepareFormattedAccountDetails() const {
-	//collect account details in string
-	ostringstream os;
-	//account details
-	os << "\nACCOUNT TYPE:    " << accountType_ << " ACCOUNT";						//display account type
-	os << "\nACCOUNT NUMBER:  " << accountNumber_;									//display account number
-	os << "\nSORT CODE:       " << sortCode_;										//display sort code
-	os << "\nCREATION DATE:   " << creationDate_.toFormattedString();				//display creation date
-	os << fixed << setprecision(2) << setfill(' ');
-	os << "\nBALANCE:         \234" << setw(10) << balance_;	//display balance
-	return ( os.str());
-}
-
-const string BankAccount::prepareFormattedMiniAccountDetails(int numOfTr) const
-{
-	ostringstream os;
-	os << "\nACCOUNT TYPE:    " << accountType_ << " ACCOUNT";						//display account type
-	os << "\nACCOUNT NUMBER:  " << accountNumber_;									//display account number
-	os << "\nSORT CODE:       " << sortCode_;										//display sort code
-	os << "\nCREATION DATE:   " << creationDate_.toFormattedString();				//display creation date
-	os << fixed << setprecision(2) << setfill(' ');
-	os << "\nBALANCE:         \234" << setw(10) << balance_;	//display balance
-	return os.str();
 }
 //---------------------------------------------------------------------------
 //non-member operator functions

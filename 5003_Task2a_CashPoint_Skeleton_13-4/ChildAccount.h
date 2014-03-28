@@ -9,30 +9,29 @@ class ChildAccount: public SavingsAccount
 {
 public:
 	ChildAccount();
-	virtual ~ChildAccount();
+	~ChildAccount();
 	double getMinimumPaidIn() const;
 	double getMaximumPaidIn() const;
-	virtual bool canDeposit(const double& amount) const;
+	bool canDeposit(const double& amount) const;
 
-	virtual ostream& putDataInStream( ostream& os) const;
-	virtual istream& getDataFromStream( istream& is);
-	virtual const string prepareFormattedStatement() const;
-	virtual const string prepareFormattedMiniStatement(int numOfTr) const;
-	virtual const string prepareFormattedAccountDetails() const;
-	virtual const string prepareFormattedMiniAccountDetails(int numOfTr) const;
-
-	virtual double borrowable() const;
-	virtual bool canWithdraw( double amount) const;
-	virtual void recordDeposit( double amount);
-	virtual bool canTransferOut(double amount) const;
-	virtual bool canTransferIn(double amount) const;
-    virtual void recordWithdrawal( double amount);
+	ostream& putDataInStream( ostream& os) const;
+	istream& getDataFromStream( istream& is);
+	const string prepareFormattedStatement() const;
+	const string prepareFormattedMiniStatement(int numOfTr) const;
+	
+	double borrowable() const;
+	bool canWithdraw( double amount) const;
+	void recordDeposit( double amount);
+	bool canTransferOut(double amount) const;
+	bool canTransferIn(double amount) const;
+    void recordWithdrawal( double amount);
+	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
+	void recordTransferOut(const double& amount, const string& tAN, const string& tSC);
 private:
 	double minimumPaidIn;
 	double maximumPaidIn;
+	const string prepareFormattedAccountDetails() const;
+	const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 };
-
-ostream& operator<<( ostream&, const ChildAccount&);	//output operator
-istream& operator>>( istream&, ChildAccount&);	    //input operator
 
 #endif

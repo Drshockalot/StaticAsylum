@@ -93,15 +93,9 @@
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\account_001_00-44.txt" />
-    <Text Include="data\account_002_00-44.txt" />
-    <Text Include="data\account_003_00-44.txt" />
-    <Text Include="data\account_004_00-44.txt" />
     <Text Include="data\account_101_00-44.txt" />
     <Text Include="data\account_102_00-44.txt" />
     <Text Include="data\account_103_00-44.txt" />
-    <Text Include="data\account_201_00-44.txt" />
-    <Text Include="data\account_202_00-44.txt" />
     <Text Include="data\account_301_00-44.txt" />
     <Text Include="data\account_302_00-44.txt" />
     <Text Include="data\account_401_00-44.txt" />

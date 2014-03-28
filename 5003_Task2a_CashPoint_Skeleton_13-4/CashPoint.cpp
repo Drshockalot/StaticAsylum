@@ -422,9 +422,18 @@ void CashPoint::requestOverdraftLimit()
 
 void CashPoint::requestMinimumBalance()
 {
-	p_SavingsAccount_ = dynamic_cast<SavingsAccount*>(p_theActiveAccount_);
-	double mB = p_SavingsAccount_->getMinimumBalance();
-	theUI_.showMinimumBalanceOnScreen(mB);
+	if(typeid(*p_theActiveAccount_) == typeid(ChildAccount))
+	{
+		p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
+		double mB = p_ChildAccount_->getMinimumBalance();
+		theUI_.showMinimumBalanceOnScreen(mB);
+	}
+	else if(typeid(*p_theActiveAccount_) == typeid(ISAAccount))
+	{
+		p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
+		double mB = p_ISAAccount_->getMinimumBalance();
+		theUI_.showMinimumBalanceOnScreen(mB);;
+	}
 }
 
 void CashPoint::requestDepositConstraints()
@@ -502,31 +511,17 @@ BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
 	int accType( checkAccountType( aBAFileName));
     //effectively create the active bank account instance of the appropriate class
 	//& store the appropriate data read from the file
-	BankAccount* p_BA( nullptr);
 	CurrentAccount* p_CA( nullptr);
-	SavingsAccount* p_SA( nullptr);
 	ChildAccount* p_ChA( nullptr);
 	ISAAccount* p_IA( nullptr);
 
 	switch( accType)
     {
-     	case BANKACCOUNT_TYPE:	//NOT NEEDED WITH ABSTRACT CLASSES
-        	cout << "\n-------BANK-------\n";
-    		p_BA = new BankAccount;    //points to a BankAccount object
-       		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
-			return p_BA;
-			break;
 		case CURRENTACCOUNT_TYPE:
 			cout << "\n-------CURRENT-------\n";
 			p_CA = new CurrentAccount;
 			p_CA->readInBankAccountFromFile( aBAFileName);
 			return p_CA;
-			break;
-		case SAVINGSACCOUNT_TYPE:
-			cout << "\n-------SAVINGS-------\n";
-			p_SA = new SavingsAccount;
-			p_SA->readInBankAccountFromFile( aBAFileName);
-			return p_SA;
 			break;
 		case CHILDACCOUNT_TYPE:
 			cout << "\n-------CHILD-------\n";
@@ -542,7 +537,6 @@ BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
 			break;
     }
 	//use dynamic memory allocation: the bank account created will have to be released in releaseBankAccount
-	return p_BA;
 }
 
 BankAccount* CashPoint::releaseBankAccount( BankAccount* p_BA, string aBAFileName) {

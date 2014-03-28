@@ -128,3 +128,19 @@ void CurrentAccount::recordWithdrawal( double amount)
 	addTransaction( aTransaction);		//update transactions_
     updateBalance( -amount);			//decrease balance_
 }
+
+void CurrentAccount::recordTransferOut(const double& amount, const string& tAN, const string& tSC)
+{
+	Transaction transferTransaction( "transfer_to_ACC_" + tAN + "_" + tSC, -amount);
+
+	addTransaction(transferTransaction);
+	updateBalance(-amount);
+}
+
+void CurrentAccount::recordTransferIn(const double& amount, const string& aAN, const string& aSC)
+{
+	Transaction transferTransaction( "transfer_from_ACC_" + aAN + "_" + aSC, amount);
+
+	addTransaction(transferTransaction);
+	updateBalance(amount);
+}

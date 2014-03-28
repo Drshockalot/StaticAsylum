@@ -44,35 +44,15 @@ int UserInterface::readInAccountProcessingCommand(const string& accType) const{
 void UserInterface::showAccountProcessingMenu(const string& accType) const {
 	int menu = 0;
 
-	if(accType == "BANK")
-		menu = 0;
-	else if(accType == "CURRENT")
+	if(accType == "CURRENT")
 		menu = 1;
-	else if(accType == "SAVINGS")
-		menu = 2;
 	else if(accType == "CHILD")
-		menu = 3;
+		menu = 2;
 	else if(accType == "ISA")
-		menu = 4;
+		menu = 3;
 
 	switch(menu)
 	{
-		case 0:
-				cout << "\n\n\n      ________________________________________";
-				cout << "\n      ________ACCOUNT PROCESSING MENU________";
-				cout << "\n      ________________________________________";
-				cout << "\n       0 End account processing & remove card";
-				cout << "\n       1                      Display balance";
-				cout << "\n       2                Withdraw from account";
-				cout << "\n       3                 Deposit into account";
-				cout << "\n       4                       Show statement";
-				cout << "\n       5                    Show all deposits";
-				cout << "\n       6                  Show mini statement";
-				cout << "\n       7          Search account transactions";
-				cout << "\n       8    Clear all transactions up to date";
-				cout << "\n       9          Transfer to another account";
-				cout << "\n         ________________________________________";
-			break;
 		case 1:
 				cout << "\n\n\n      ________________________________________";
 				cout << "\n      ________ACCOUNT PROCESSING MENU________";
@@ -105,6 +85,7 @@ void UserInterface::showAccountProcessingMenu(const string& accType) const {
 				cout << "\n       8    Clear all transactions up to date";
 				cout << "\n       9          Transfer to another account";
 				cout << "\n       10             Display Minimum Balance";
+				cout << "\n       11         Display Deposit Constraints";
 				cout << "\n         ________________________________________";
 			break;
 		case 3:
@@ -122,29 +103,10 @@ void UserInterface::showAccountProcessingMenu(const string& accType) const {
 				cout << "\n       8    Clear all transactions up to date";
 				cout << "\n       9          Transfer to another account";
 				cout << "\n       10             Display Minimum Balance";
-				cout << "\n       11         Display Deposit Constraints";
-				cout << "\n         ________________________________________";
-			break;
-		case 4:
-				cout << "\n\n\n      ________________________________________";
-				cout << "\n      ________ACCOUNT PROCESSING MENU________";
-				cout << "\n      ________________________________________";
-				cout << "\n       0 End account processing & remove card";
-				cout << "\n       1                      Display balance";
-				cout << "\n       2                Withdraw from account";
-				cout << "\n       3                 Deposit into account";
-				cout << "\n       4                       Show statement";
-				cout << "\n       5                    Show all deposits";
-				cout << "\n       6                  Show mini statement";
-				cout << "\n       7          Search account transactions";
-				cout << "\n       8    Clear all transactions up to date";
-				cout << "\n       9          Transfer to another account";
-				cout << "\n       10             Display Minimum Balance";
-				cout << "\n		  11		 Display ISA Account Details";
+				cout << "\n       11		  Display ISA Details";
 				cout << "\n         ________________________________________";
 			break;
 	}
-		
 }
 
 const string UserInterface::readInCardToBeProcessed( string& aCardNumber) const {
@@ -333,30 +295,30 @@ void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK
 void UserInterface::showOverdraftLimitOnScreen(const double& oD) const
 {
 	cout << "\nOVERDRAFT LIMIT: \n";
-	cout << oD;
+	cout << "\234" << oD;
 }
 
 void UserInterface::showMinimumBalanceOnScreen(const double& mB) const
 {
 	cout << "\nMINIMUM BALANCE : \n";
-	cout << mB;
+	cout << "\234" << mB;
 }
 
 void UserInterface::showDepositConstraintsOnScreen(const double& minIP, const double& maxIP) const
 {
 	cout << "\nMINIMUM PAID IN RESTRICTION: ";
-	cout << minIP;
+	cout << "\234" << minIP;
 	cout << "\nMAXIMUM PAID IN RESTRICTION: ";
-	cout << maxIP;
+	cout << "\234" << maxIP;
 }
 
 void UserInterface::showIsaDetailsOnScreen(const double& maxYD, const double& currYD, const Date& eOD) const
 {
 	cout << "\nISA ACCOUNT DETAILS: ";
 	cout << "\nMAXIMUM YEARLY DEPOSIT: ";
-	cout << maxYD;
+	cout << "\234" << maxYD;
 	cout << "\nCURRENT YEARLY DEPOSIT: ";
-	cout << currYD;
+	cout << "\234" << currYD;
 	cout << "\nEND DEPOSIT DATE: ";
 	cout << eOD;
 }
