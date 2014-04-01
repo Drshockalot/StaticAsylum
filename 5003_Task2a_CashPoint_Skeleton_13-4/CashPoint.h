@@ -34,7 +34,7 @@ private:
 	SavingsAccount* p_SavingsAccount_;
 	ChildAccount* p_ChildAccount_;
 	ISAAccount* p_ISAAccount_;
-    const UserInterface theUI_;
+    const UserInterface* p_theUI_;
 
 	//support functions
 	void performCardCommand( int);

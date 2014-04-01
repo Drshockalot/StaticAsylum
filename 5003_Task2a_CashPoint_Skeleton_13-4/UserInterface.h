@@ -19,6 +19,11 @@ using namespace std;
 class UserInterface {
 public:
 	//constructors & destructor
+	static UserInterface* getInstance(){
+		static UserInterface instance;
+		return &instance;
+	}
+
     void	showWelcomeScreen() const;
     void	showByeScreen() const;
 
@@ -82,6 +87,10 @@ public:
 	void	showMatchingTransactionsOnScreen( const string& results) const;
 private:
     //support functions 
+	UserInterface(){}
+	UserInterface(const UserInterface &){}
+	UserInterface& operator=(const UserInterface &){}
+
 	void	showCardIdentificationMenu() const;
 	void	showAccountProcessingMenu(const string& accType) const;
     int		readInCommand() const;
