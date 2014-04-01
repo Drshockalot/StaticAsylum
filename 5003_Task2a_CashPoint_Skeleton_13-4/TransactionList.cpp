@@ -25,7 +25,7 @@ const TransactionList TransactionList::olderTransactions() const{
     return trlist;
 }
 void TransactionList::deleteFirstTransaction() {
-    listOfTransactions_.deleteFirst();
+    listOfTransactions_.pop_front();
 }
 void TransactionList::deleteGivenTransaction( const Transaction& tr) {
     assert(size() != 0);
@@ -65,7 +65,7 @@ void TransactionList::deleteTransactionsUpToDate(const Date& date)
 }
 
 int TransactionList::size() const {
-    return (listOfTransactions_.length());
+    return (listOfTransactions_.size());
 }
 
 const string TransactionList::toFormattedString() const {
@@ -96,7 +96,7 @@ istream& TransactionList::getDataFromStream( istream& is) {
 	is >> aTransaction;	//read first transaction
 	while ( is != 0) 	//while not end of file
 	{
-		listOfTransactions_.addAtEnd( aTransaction);   //add transaction to list of transactions
+		listOfTransactions_.push_back( aTransaction);   //add transaction to list of transactions
 		is >> aTransaction;	//read in next transaction
 	}
 	return is;
@@ -152,7 +152,7 @@ TransactionList TransactionList::getTransactionsUpToDate(const Date& date, Trans
 
 void TransactionList::addTransaction(const Transaction tr)
 {
-	listOfTransactions_.addAtEnd(tr);
+	listOfTransactions_.push_back(tr);
 }
 
 ostream& operator<<( ostream& os, const TransactionList& aTransactionList) {
