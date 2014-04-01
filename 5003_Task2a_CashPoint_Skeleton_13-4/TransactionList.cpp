@@ -14,10 +14,10 @@
 //____other public member functions
 
 void TransactionList::addNewTransaction( const Transaction& tr) {
-    listOfTransactions_.addInFront( tr);
+	listOfTransactions_.push_front( tr);
 }
 const Transaction TransactionList::newestTransaction() const {
-    return (listOfTransactions_.first());
+	return (listOfTransactions_.front());
 }
 const TransactionList TransactionList::olderTransactions() const{
 	TransactionList trlist( *this);

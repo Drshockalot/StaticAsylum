@@ -8,11 +8,12 @@
 //TransactionList: class declaration
 //---------------------------------------------------------------------------
 
-#include "ListT.h"
+//#include "ListT.h"
 #include "Transaction.h"
 
 #include <cassert> 	// for assert()
 #include <sstream>
+#include <list>
 
 class TransactionList {
 public:
@@ -51,7 +52,7 @@ public:
 
 
 private:
-    List<Transaction> listOfTransactions_;	//list of transactions
+    list<Transaction> listOfTransactions_;	//list of transactions
 };
 
 //---------------------------------------------------------------------------
