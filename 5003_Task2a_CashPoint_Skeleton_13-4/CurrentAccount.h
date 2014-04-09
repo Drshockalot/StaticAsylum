@@ -16,8 +16,6 @@ public:
 	virtual istream& getDataFromStream( istream& is);
 	virtual const string prepareFormattedStatement() const;
 	virtual const string prepareFormattedMiniStatement(int numOfTr) const;
-	virtual const string prepareFormattedAccountDetails() const;
-	virtual const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 
 	virtual double borrowable() const;
 	virtual bool canWithdraw( double amount) const;
@@ -29,6 +27,8 @@ public:
 	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
 private:
 	double overdraftLimit;
+	virtual const string prepareFormattedAccountDetails() const;
+	virtual const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 };
 
 #endif

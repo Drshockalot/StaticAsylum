@@ -30,7 +30,6 @@ BankAccount::BankAccount( const string& typ, const string& acctNum, const string
 BankAccount::~BankAccount()
 {}
 
-
 //____other public member functions
 
 const string BankAccount::getAccountType() const {

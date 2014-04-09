@@ -1,6 +1,9 @@
-//Pascale Vacher - March 14
-//OOP Assignment Semester 2
-
+////////////////////////////////////////////
+//				GROUP UT1				  //
+//	   <(''<) Chad Simpson (>'')>         //
+//     Q(''O)  Luke Ward   Q(''O)         //
+//	  <(._.<)  Shaun Webb  (>._.)>        //
+////////////////////////////////////////////
 #ifndef BankAccountH
 #define BankAccountH
 
@@ -8,8 +11,6 @@
 //BankAccount: class declaration
 //---------------------------------------------------------------------------
 
-//#include "Date.h"
-//#include "Transaction.h"
 #include "TransactionList.h"
 
 #include <fstream>
@@ -63,7 +64,7 @@ public:
 	void updateBalance( double amount);
 
 	//templates
-		template <typename T> string m7a_showTransactionsForAmount(T amount)
+	template <typename T> string m7a_showTransactionsForAmount(T amount)
 	{
 		ostringstream os;
 		TransactionList results(transactions_.getTransactionsForAmount(amount));

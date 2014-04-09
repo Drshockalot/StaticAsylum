@@ -30,10 +30,6 @@ private:
     BankAccount* p_theActiveAccount_;
 	BankAccount* p_theTransferAccount_;
     CashCard* p_theCashCard_;
-	CurrentAccount* p_CurrentAccount_;
-	SavingsAccount* p_SavingsAccount_;
-	ChildAccount* p_ChildAccount_;
-	ISAAccount* p_ISAAccount_;
     const UserInterface* p_theUI_;
 
 	//support functions

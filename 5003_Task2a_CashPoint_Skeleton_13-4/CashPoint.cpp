@@ -322,7 +322,7 @@ void CashPoint::m3_depositToBankAccount() {
     double amountToDeposit( p_theUI_->readInDepositAmount());
 	if(typeid(*p_theActiveAccount_) == typeid(ChildAccount))
 	{
-		p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
+		ChildAccount* p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
 		bool depAuth = p_ChildAccount_->canDeposit(amountToDeposit);
 		if(depAuth)
 			p_ChildAccount_->recordDeposit( amountToDeposit);
@@ -330,7 +330,7 @@ void CashPoint::m3_depositToBankAccount() {
 	}
 	else if(typeid(*p_theActiveAccount_) == typeid(ISAAccount))
 	{
-		p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
+		ISAAccount* p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
 		bool depAuth = p_ISAAccount_->canDeposit(amountToDeposit);
 		if(depAuth)
 			p_ISAAccount_->recordDeposit(amountToDeposit);
@@ -415,7 +415,7 @@ void CashPoint::m9_transferCashToAnotherAccount()
 
 void CashPoint::requestOverdraftLimit()
 {
-	p_CurrentAccount_ = dynamic_cast<CurrentAccount*>(p_theActiveAccount_);
+	CurrentAccount* p_CurrentAccount_ = dynamic_cast<CurrentAccount*>(p_theActiveAccount_);
 	double oD = p_CurrentAccount_->getOverdraftLimit();
 	p_theUI_->showOverdraftLimitOnScreen(oD);
 }
@@ -424,13 +424,13 @@ void CashPoint::requestMinimumBalance()
 {
 	if(typeid(*p_theActiveAccount_) == typeid(ChildAccount))
 	{
-		p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
+		ChildAccount* p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
 		double mB = p_ChildAccount_->getMinimumBalance();
 		p_theUI_->showMinimumBalanceOnScreen(mB);
 	}
 	else if(typeid(*p_theActiveAccount_) == typeid(ISAAccount))
 	{
-		p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
+		ISAAccount* p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
 		double mB = p_ISAAccount_->getMinimumBalance();
 		p_theUI_->showMinimumBalanceOnScreen(mB);;
 	}
@@ -438,7 +438,7 @@ void CashPoint::requestMinimumBalance()
 
 void CashPoint::requestDepositConstraints()
 {
-	p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
+	ChildAccount* p_ChildAccount_ = dynamic_cast<ChildAccount*>(p_theActiveAccount_);
 	double minPI = p_ChildAccount_->getMinimumPaidIn();
 	double maxPI = p_ChildAccount_->getMaximumPaidIn();
 	p_theUI_->showDepositConstraintsOnScreen(minPI, maxPI);
@@ -446,7 +446,7 @@ void CashPoint::requestDepositConstraints()
 
 void CashPoint::requestIsaDetails()
 {
-	p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
+	ISAAccount* p_ISAAccount_ = dynamic_cast<ISAAccount*>(p_theActiveAccount_);
 	double maxYD = p_ISAAccount_->getMaximumYearlyDeposit();
 	double currYD = p_ISAAccount_->getCurrentYearlyDeposit();
 	Date eDP = p_ISAAccount_->getEndDepositPeriod();
