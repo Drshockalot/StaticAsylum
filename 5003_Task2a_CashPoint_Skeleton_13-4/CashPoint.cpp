@@ -511,32 +511,31 @@ BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
 	int accType( checkAccountType( aBAFileName));
     //effectively create the active bank account instance of the appropriate class
 	//& store the appropriate data read from the file
-	CurrentAccount* p_CA( nullptr);
-	ChildAccount* p_ChA( nullptr);
-	ISAAccount* p_IA( nullptr);
+	BankAccount* p_BA( nullptr);
 
 	switch( accType)
     {
 		case CURRENTACCOUNT_TYPE:
 			cout << "\n-------CURRENT-------\n";
-			p_CA = new CurrentAccount;
-			p_CA->readInBankAccountFromFile( aBAFileName);
-			return p_CA;
+			p_BA = new CurrentAccount;
+			p_BA->readInBankAccountFromFile( aBAFileName);
+			return p_BA;
 			break;
 		case CHILDACCOUNT_TYPE:
 			cout << "\n-------CHILD-------\n";
-			p_ChA = new ChildAccount;
-			p_ChA->readInBankAccountFromFile( aBAFileName);
-			return p_ChA;
+			p_BA = new ChildAccount;
+			p_BA->readInBankAccountFromFile( aBAFileName);
+			return p_BA;
 			break;
 		case ISAACCOUNT_TYPE:
 			cout << "\n-------ISA-------\n";
-			p_IA = new ISAAccount;
-			p_IA->readInBankAccountFromFile( aBAFileName);
-			return p_IA;
+			p_BA = new ISAAccount;
+			p_BA->readInBankAccountFromFile( aBAFileName);
+			return p_BA;
 			break;
     }
 	//use dynamic memory allocation: the bank account created will have to be released in releaseBankAccount
+	return p_BA;
 }
 
 BankAccount* CashPoint::releaseBankAccount( BankAccount* p_BA, string aBAFileName) {
