@@ -1,3 +1,10 @@
+////////////////////////////////////////////
+//				GROUP UT1				  //
+//	   <(''<) Chad Simpson (>'')>         //
+//     Q(''O)  Luke Ward   Q(''O)         //
+//	  <(._.<)  Shaun Webb  (>._.)>        //
+////////////////////////////////////////////
+
 #include "SavingsAccount.h"
 
 SavingsAccount::SavingsAccount()

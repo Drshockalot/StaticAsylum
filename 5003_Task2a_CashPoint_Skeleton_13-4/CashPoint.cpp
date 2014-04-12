@@ -1,5 +1,9 @@
-//Pascale Vacher - March 14
-//OOP Assignment Semester 2
+////////////////////////////////////////////
+//				GROUP UT1				  //
+//	   <(''<) Chad Simpson (>'')>         //
+//     Q(''O)  Luke Ward   Q(''O)         //
+//	  <(._.<)  Shaun Webb  (>._.)>        //
+////////////////////////////////////////////
 
 #include "CashPoint.h"
 
