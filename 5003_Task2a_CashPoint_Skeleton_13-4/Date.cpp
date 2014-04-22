@@ -116,6 +116,12 @@ bool Date::operator>=( const Date& d) const
 		 ( month_ == d.month_) &&
 		 ( year_ == d.year_)));
 }
+bool Date::operator>(const Date& d) const
+{
+	return ((year_ > d.year_)
+		|| ((year_ == d.year_) && (month_ > d.month_))
+		|| ((year_ == d.year_) && (month_ == d.month_) && (day_ > d.day_)));
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

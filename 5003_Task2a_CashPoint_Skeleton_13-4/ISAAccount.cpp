@@ -128,14 +128,23 @@ void ISAAccount::recordDeposit( double amount)
     updateBalance( amount);			//increase balance_
 }
 
-bool ISAAccount::canTransferOut(double amount) const
+bool ISAAccount::canTransferOut(double amount, string& probStr) const
 {
-	return (amount <= (getBalance() - getMinimumBalance()));
+	if (amount <= (getBalance() - getMinimumBalance()))
+		return true;
+	else
+		probStr = "THE REQUESTED AMOUNT EXCEEDS YOUR MINIMUM BALANCE";
 }
 
-bool ISAAccount::canTransferIn(double amount) const
+bool ISAAccount::canTransferIn(double amount, string& probStr) const
 {
-	return (currentYearlyDeposit < maximumYearlyDeposit && Date::currentDate() <= endDepositPeriod);
+	if ((amount + currentYearlyDeposit) < maximumYearlyDeposit && Date::currentDate() <= endDepositPeriod)
+		return true;
+	else if ((amount + currentYearlyDeposit) > maximumYearlyDeposit)
+		probStr = "THE REQUESTED DEPOSIT AMOUNT WOULD EXCEED YOUR MAXIMUM YEARLY DEPOSIT";
+	else if (Date::currentDate() > endDepositPeriod)
+		probStr = "THE END DEPOSIT PERIOD FOR THIS ACCOUNT HAS PASSED";
+	return false;
 }
 
 void ISAAccount::recordWithdrawal( double amount)

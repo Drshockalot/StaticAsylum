@@ -2,8 +2,9 @@ CURRENT
 101
 00-44
 10/12/2005
-150
+145
 50
+22/ 4/2014 20:23:02 transfer_from_ACC_102_00-44 -5
 27/ 3/2014 14:43:21 transfer_from_ACC_102_00-44 50
 23/ 3/2014 16:42:26 withdrawal_from_ATM -10
 22/10/2010 20:53:56 withdrawal_from_ATM 100

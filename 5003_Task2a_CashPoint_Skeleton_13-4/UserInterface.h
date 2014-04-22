@@ -57,7 +57,7 @@ public:
 	void	showDeletionOfTransactionUpToDateOnScreen(const Date& date, const int& numOfTr, const bool& deletionConfirmed) const;
 	void	showNoTransactionsUpToDateOnScreen(const Date& date) const;
 	void	showTransactionsUpToDateOnScreen(const bool& noTransactions, const Date& d, const int& numOfTr, const string& str) const;
-	void	showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount) const;
+	void	showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount, const string& InprobStr, const string& OutProbStr) const;
 	void	showOverdraftLimitOnScreen(const double& oD) const;
 	void	showMinimumBalanceOnScreen(const double& mB) const;
 	void	showDepositConstraintsOnScreen(const double& minPI, const double& maxPI) const;
@@ -80,7 +80,7 @@ public:
 		int day,month,year;
 		Date searchDate;
 		do{
-			cout << "\n ENTER VALID DATE: "
+			cout << "\n ENTER VALID DATE: ";
 			cout << "\n ENTER SEARCH DAY:  ";
 			cin >> day;
 			cout << "\n ENTER SEARCH MONTH:  ";

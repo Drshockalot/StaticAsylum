@@ -43,6 +43,7 @@ public:
 	void setBADetails(const string& accT, const string& accN, const string& sC, const Date& cDate, const int& bal, const TransactionList& tr);
 
 	//other operations
+	virtual const string prepareFormattedAccountDetails() const = 0;
 	virtual const string prepareFormattedStatement() const = 0;
 	virtual const void produceNMostRecentTransactions(int numOfTr, string& str, double& total);
 
@@ -52,8 +53,8 @@ public:
 
 	virtual double borrowable() const = 0;
 	virtual bool canWithdraw( double amount) const = 0;
-	virtual bool canTransferOut(double amount) const = 0;
-	virtual bool canTransferIn(double amount) const = 0;
+	virtual bool canTransferOut(double amount, string& probStr) const = 0;
+	virtual bool canTransferIn(double amount, string& probStr) const = 0;
     virtual void recordWithdrawal( double amount) = 0;
 	virtual void recordTransferIn(const double& amount, const string& aAN, const string& aSC) = 0;
 	virtual void recordTransferOut(const double& amount, const string& tAN, const string& tSC) = 0;
@@ -83,10 +84,6 @@ private:
     Date   creationDate_;
 	double balance_;
     TransactionList transactions_;
- 
-	//support functions
-	
-	virtual const string prepareFormattedAccountDetails() const = 0;
 };
 
 //---------------------------------------------------------------------------

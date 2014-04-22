@@ -40,6 +40,7 @@ public:
 	bool operator<( const Date& d) const;		//true if (*this < d)  (strictly earlier)
 	bool operator<=(const Date& d) const;
 	bool operator>=(const Date& d) const;
+	bool operator>(const Date& d) const;
 
 private:
 	int day_;

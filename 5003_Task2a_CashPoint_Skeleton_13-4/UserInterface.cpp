@@ -177,6 +177,11 @@ double UserInterface::readInTransferAmount() const
 	double amount;
 	cout << "\nENTER THE AMOUNT YOU WOULD LIKE TO TRANSFER: ";
 	cin >> amount;
+	while (amount < 0)
+	{
+		cout << "\nERROR: ENTER AN AMOUNT 0 OR ABOVE";
+		cin >> amount;
+	}
 	return amount;
 }
 
@@ -268,12 +273,17 @@ void UserInterface::showStatementOnScreen( const string& statement) const {
 
 void UserInterface::showMiniStatementOnScreen(const int& numOfTr, const string& str, const double& total) const
 {
-	cout << "\nPREPARING MINI STATEMENT...";
-	cout << "\n________ ACCOUNT MINI STATEMENT _____";
-	cout << "\n_______SHOWING " << numOfTr << " TRANSACTIONS\n";
-	cout << "\nCumulated transaction amount (all transactions): \234" << total << "\n";
-	cout << str;
-	cout << "\n________ END ACCOUNT MINI STATEMENT _____";
+	if (numOfTr == 0)
+		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
+	else
+	{
+		cout << "\nPREPARING MINI STATEMENT...";
+		cout << "\n________ ACCOUNT MINI STATEMENT _____";
+		cout << "\n_________SHOWING " << numOfTr << " TRANSACTIONS_____\n";
+		cout << "\nCumulated transaction amount (all transactions): \234" << total << "\n";
+		cout << str;
+		cout << "\n________ END ACCOUNT MINI STATEMENT _____";
+	}
 }
 
 void UserInterface::showTransactionsUpToDateOnScreen(const bool& noTransaction, const Date& d, const int& numOfTr, const string& str) const
@@ -287,7 +297,7 @@ void UserInterface::showTransactionsUpToDateOnScreen(const bool& noTransaction, 
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 }
 
-void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount) const
+void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK, const double& transferAmount, const string& inProbStr, const string& outProbStr) const
 {
 	if(trOutOK && trInOK)
 	{
@@ -295,7 +305,11 @@ void UserInterface::showTransferOnScreen(const bool& trOutOK, const bool& trInOK
 		cout << "\nTRANSACTION AMOUNT: " << transferAmount;
 	}
 	else
-		cout << "\nTRANSACTION UNSUCCESSFUL";
+	{
+		cout << "\nTRANSACTION ERROR\n";
+		cout << "\nSENDING ACCOUNT ERROR: " << outProbStr;
+		cout << "\nRECEIVING ACCOUNT ERROR: " << inProbStr;
+	}
 }
 
 void UserInterface::showOverdraftLimitOnScreen(const double& oD) const

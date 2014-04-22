@@ -24,6 +24,7 @@ public:
 	ostream& putDataInStream( ostream& os) const;
 	istream& getDataFromStream( istream& is);
 	const string prepareFormattedStatement() const;
+	const string prepareFormattedAccountDetails() const;
 
 	void recordTransferOut(const double& amount, const string& tAN, const string& tSC);
 	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
@@ -31,15 +32,14 @@ public:
 	double borrowable() const;
 	bool canWithdraw( double amount) const;
 	void recordDeposit( double amount);
-	bool canTransferOut(double amount) const;
-	bool canTransferIn(double amount) const;
+	bool canTransferOut(double amount, string& probStr) const;
+	bool canTransferIn(double amount, string& probStr) const;
     void recordWithdrawal( double amount);
 private:
 	double maximumYearlyDeposit;
 	double currentYearlyDeposit;
 	Date endDepositPeriod;
 	void updateCurrentYearlyDeposit(const double& a);
-	const string prepareFormattedAccountDetails() const;
 };
 
 #endif

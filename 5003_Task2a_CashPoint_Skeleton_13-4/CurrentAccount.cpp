@@ -94,12 +94,16 @@ void CurrentAccount::recordDeposit( double amount)
     updateBalance( amount);			//increase balance_
 }
 
-bool CurrentAccount::canTransferOut(double amount) const
+bool CurrentAccount::canTransferOut(double amount, string& probStr) const
 {
-	return (amount <= getBalance());
+	if (amount <= borrowable())
+		return true;
+	else
+		probStr = "ATTEMPTED WITHDRAWL EXCEEDS YOUR OVERDRAFT";
+	return false;
 }
 
-bool CurrentAccount::canTransferIn(double amount) const
+bool CurrentAccount::canTransferIn(double amount, string& probStr) const
 {
 	return true;
 }

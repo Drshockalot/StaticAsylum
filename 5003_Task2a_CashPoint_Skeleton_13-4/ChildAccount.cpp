@@ -114,14 +114,25 @@ void ChildAccount::recordDeposit( double amount)
     updateBalance( amount);			//increase balance_
 }
 
-bool ChildAccount::canTransferOut(double amount) const
+bool ChildAccount::canTransferOut(double amount, string& probStr) const
 {
-	return ((amount <= (getBalance() - getMinimumBalance())));
+	if (amount <= (getBalance() - getMinimumBalance()))
+		return true;
+	else
+		probStr = "THE REQUESTED AMOUNT EXCEEDS YOUR MINIMUM BALANCE";
+	return false;
 }
 
-bool ChildAccount::canTransferIn(double amount) const
+bool ChildAccount::canTransferIn(double amount, string& probStr) const
 {
-	return (amount >= minimumPaidIn && amount <= maximumPaidIn);
+	if (amount >= minimumPaidIn && amount <= maximumPaidIn)
+		return true;
+	else if (amount < minimumPaidIn)
+		probStr = "THE REQUESTED DEPOSIT IS TOO LOW OF AN AMOUNT";
+	else if (amount > maximumPaidIn)
+		probStr = "THE REQUESTED DEPOSIT IS TOO HIGH OF AN AMOUNT";
+	return false;
+
 }
 
 void ChildAccount::recordWithdrawal( double amount)

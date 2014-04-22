@@ -136,12 +136,14 @@ void CashPoint::processOneAccountRequests() {
 
 void CashPoint::attemptTransfer(BankAccount* p_theTransferAccount_)
 {
+	string trInProblemStr = "NO ERROR";
+	string trOutProblemStr = "NO ERROR";
 	double transferAmount = p_theUI_->readInTransferAmount();
-	bool trOutOK = p_theActiveAccount_->canTransferOut(transferAmount);
-	bool trInOK = p_theTransferAccount_->canTransferIn(transferAmount);
+	bool trOutOK = p_theActiveAccount_->canTransferOut(transferAmount, trOutProblemStr);
+	bool trInOK = p_theTransferAccount_->canTransferIn(transferAmount, trInProblemStr);
 	if(trOutOK && trInOK)
 		recordTransfer(transferAmount, p_theTransferAccount_);
-	p_theUI_->showTransferOnScreen(trOutOK, trInOK, transferAmount);
+	p_theUI_->showTransferOnScreen(trOutOK, trInOK, transferAmount, trInProblemStr, trOutProblemStr);
 }
 
 void CashPoint::recordTransfer(const double& transferAmount, BankAccount* p_theTransferAccount_)
@@ -372,6 +374,7 @@ void CashPoint::m6_showMiniStatement() const
 		numOfTr = p_theUI_->readInNumberOfTransactions();
 		p_theActiveAccount_->produceNMostRecentTransactions(numOfTr, str, total);
 	}
+	str = p_theActiveAccount_->prepareFormattedAccountDetails() + "\n"  + str;
 	p_theUI_->showMiniStatementOnScreen(numOfTr, str, total);
 	
 }

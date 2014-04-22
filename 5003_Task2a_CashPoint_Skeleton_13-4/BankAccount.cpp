@@ -85,7 +85,7 @@ void BankAccount::recordDeposit( double amountToDeposit) {
 void const BankAccount::produceNMostRecentTransactions(int numOfTr, string& str, double& total)
 {
 	TransactionList trl = transactions_.getMostRecentTransactions(numOfTr);
-	total = transactions_.getTotalTransactions();
+	total = trl.getTotalTransactions();
 	str = trl.toFormattedString();
 }
 
