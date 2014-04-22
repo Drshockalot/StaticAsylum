@@ -44,7 +44,7 @@ public:
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
-	int		getNumberOfTransactions() const;
+	int		readInNumberOfTransactions() const;
 	bool	readInConfirmDeletion() const;
 	double	readInTransferAmount() const;
 
@@ -52,7 +52,7 @@ public:
     void	showDepositOnScreen( bool auth, double deposit) const;
     void	showWithdrawalOnScreen( bool auth, double withdrawal) const;
     void	showStatementOnScreen( const string&) const;
-	void	showMiniStatementOnScreen(const string&) const;
+	void	showMiniStatementOnScreen(const int&, const string&, const double&) const;
 	void	showAllDepositsOnScreen(bool noTransaction, string str, double total) const;
 	void	showDeletionOfTransactionUpToDateOnScreen(const Date& date, const int& numOfTr, const bool& deletionConfirmed) const;
 	void	showNoTransactionsUpToDateOnScreen(const Date& date) const;
@@ -75,16 +75,20 @@ public:
 		return amount;
 		//return searchAmount;
 	}
-	template <> Date readInSearchAmount<Date>() const
+	template <typename T> Date readInSearchAmount(T cr) const
 	{
 		int day,month,year;
-		cout << "\n ENTER SEARCH DAY:  ";
-		cin >> day;
-		cout << "\n ENTER SEARCH MONTH:  ";
-		cin >> month;
-		cout << "\n ENTER SEARCH YEAR:  ";
-		cin >> year;
-		Date searchDate(day,month,year);
+		Date searchDate;
+		do{
+			cout << "\n ENTER VALID DATE: "
+			cout << "\n ENTER SEARCH DAY:  ";
+			cin >> day;
+			cout << "\n ENTER SEARCH MONTH:  ";
+			cin >> month;
+			cout << "\n ENTER SEARCH YEAR:  ";
+			cin >> year;
+			searchDate = Date(day, month, year);
+		} while (!searchDate.isValidDate(cr));
 		return searchDate;
 	}
 

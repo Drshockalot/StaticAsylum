@@ -91,37 +91,10 @@ const string ISAAccount::prepareFormattedStatement() const
 		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
 	return ( os.str());
 }
-const string ISAAccount::prepareFormattedMiniStatement(int numOfTr) const
-{
-	ostringstream os;
 
-	os << prepareFormattedMiniAccountDetails(numOfTr);
-	TransactionList tr = getRequestedNumberOfTransactions(numOfTr);
-	if ( ! getTransactions().size() == 0)
-		os << "\n\nLIST OF TRANSACTIONS\n" << tr.toFormattedString();	//one per line
-	else
-		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
-	return ( os.str());
-}
 const string ISAAccount::prepareFormattedAccountDetails() const
 {
 	//collect account details in string
-	ostringstream os;
-	//account details
-	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type
-	os << "\nACCOUNT NUMBER:  " << getAccountNumber();									//display account number
-	os << "\nSORT CODE:       " << getSortCode();										//display sort code
-	os << "\nCREATION DATE:   " << getCreationDate().toFormattedString();				//display creation date
-	os << fixed << setprecision(2) << setfill(' ');
-	os << "\nBALANCE:         \234" << setw(10) << getBalance();	//display balance
-	os << "\nMINIMUM BALANCE:  \234" << setw(10) << getMinimumBalance();
-	os << "\nMAXIMUM YEARLY DEPOSIT: \234" << setw(10) << maximumYearlyDeposit;
-	os << "\nCURRENT YEARLY DEPOSIT: \234" << setw(10) << currentYearlyDeposit;
-	os << "\nEND DEPOSIT PERIOD: " << endDepositPeriod;
-	return ( os.str());
-}
-const string ISAAccount::prepareFormattedMiniAccountDetails(int numOfTr) const
-{
 	ostringstream os;
 	//account details
 	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type

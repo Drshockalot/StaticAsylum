@@ -30,6 +30,7 @@ public:
 	int    size() const;
 	TransactionList getAllDepositTransactions();
 	double getTotalTransactions() const;
+	TransactionList getMostRecentTransactions(int numOfTr);
 	TransactionList getTransactionsUpToDate(const Date& date, TransactionList temp);
 	void deleteTransactionsUpToDate(const Date& date);
 	void addTransaction(const Transaction tr);

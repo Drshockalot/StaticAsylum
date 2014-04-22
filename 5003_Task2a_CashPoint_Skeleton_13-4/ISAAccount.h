@@ -24,7 +24,6 @@ public:
 	ostream& putDataInStream( ostream& os) const;
 	istream& getDataFromStream( istream& is);
 	const string prepareFormattedStatement() const;
-	const string prepareFormattedMiniStatement(int numOfTr) const;
 
 	void recordTransferOut(const double& amount, const string& tAN, const string& tSC);
 	void recordTransferIn(const double& amount, const string& aAN, const string& aSC);
@@ -41,7 +40,6 @@ private:
 	Date endDepositPeriod;
 	void updateCurrentYearlyDeposit(const double& a);
 	const string prepareFormattedAccountDetails() const;
-	const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 };
 
 #endif

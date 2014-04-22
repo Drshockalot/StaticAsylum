@@ -363,8 +363,17 @@ void CashPoint::m5_showAllDepositTransactions() const
 
 void CashPoint::m6_showMiniStatement() const
 {
-	int	numOfTr = p_theUI_->getNumberOfTransactions();
-	p_theUI_->showMiniStatementOnScreen(p_theActiveAccount_->prepareFormattedMiniStatement(numOfTr));
+	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
+	int numOfTr = 0;
+	double total = 0.0;
+	string str = "";
+	if (!noTransaction)
+	{
+		numOfTr = p_theUI_->readInNumberOfTransactions();
+		p_theActiveAccount_->produceNMostRecentTransactions(numOfTr, str, total);
+	}
+	p_theUI_->showMiniStatementOnScreen(numOfTr, str, total);
+	
 }
 
 void CashPoint::m7_searchForTransactions() const
@@ -568,7 +577,7 @@ void CashPoint::searchTransactions() const
 		p_theUI_->showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(title));
 		break;
 	case 3: 
-		Date date = p_theUI_->readInSearchAmount<Date>();
+		Date date = p_theUI_->readInSearchAmount<Date>(p_theActiveAccount_->getCreationDate());
 		p_theUI_->showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(date));
 		break;
 	}

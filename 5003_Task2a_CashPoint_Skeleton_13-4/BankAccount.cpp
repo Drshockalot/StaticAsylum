@@ -67,11 +67,11 @@ bool BankAccount::isEmptyTransactionList() const {
 	return transactions_.size() == 0;
 }
 
-void BankAccount::produceAllDepositTransactions(string& s, double& d)
+void BankAccount::produceAllDepositTransactions(string& str, double& total)
 {
 	TransactionList trl(transactions_.getAllDepositTransactions());
-	d = trl.getTotalTransactions();
-	s = trl.toFormattedString();
+	total = trl.getTotalTransactions();
+	str = trl.toFormattedString();
 }
 
 void BankAccount::recordDeposit( double amountToDeposit) {
@@ -80,6 +80,13 @@ void BankAccount::recordDeposit( double amountToDeposit) {
     //update active bankaccount
     transactions_.addNewTransaction( aTransaction);		//update transactions_
     updateBalance( amountToDeposit);			//increase balance_
+}
+
+void const BankAccount::produceNMostRecentTransactions(int numOfTr, string& str, double& total)
+{
+	TransactionList trl = transactions_.getMostRecentTransactions(numOfTr);
+	total = transactions_.getTotalTransactions();
+	str = trl.toFormattedString();
 }
 
 void BankAccount::updateBalance(double amount)
@@ -95,21 +102,6 @@ void BankAccount::addTransaction(Transaction tr)
 void BankAccount::recordDeletionOfTransactionUpToDate(const Date& date) 
 {
 	transactions_.deleteTransactionsUpToDate(date);
-}
-
-const TransactionList BankAccount::getRequestedNumberOfTransactions(int numOfTr) const
-{
-	TransactionList copy(getTransactions());
-	TransactionList temp;
-	for(int i = 0 ; i < numOfTr ; ++i)
-	{
-		if(copy.size() > 0)
-		{
-			temp.addTransaction(copy.newestTransaction());
-			copy.deleteFirstTransaction();
-		}
-	}
-	return temp;
 }
 
 void BankAccount::readInBankAccountFromFile( const string& fileName) {

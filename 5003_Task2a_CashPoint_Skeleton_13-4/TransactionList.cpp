@@ -154,6 +154,21 @@ TransactionList TransactionList::getTransactionsUpToDate(const Date& date, Trans
 	}
 }
 
+TransactionList TransactionList::getMostRecentTransactions(int numOfTr)
+{
+	list<Transaction> copy(listOfTransactions_);
+	TransactionList temp;
+	for (int i = 0; i < numOfTr; ++i)
+	{
+		if (copy.size() > 0)
+		{
+			temp.addTransaction(copy.front());
+			copy.pop_front();
+		}
+	}
+	return temp;
+}
+
 void TransactionList::addTransaction(const Transaction tr)
 {
 	listOfTransactions_.push_back(tr);

@@ -24,7 +24,6 @@ public:
 	ostream& putDataInStream( ostream& os) const;
 	istream& getDataFromStream( istream& is);
 	const string prepareFormattedStatement() const;
-	const string prepareFormattedMiniStatement(int numOfTr) const;
 	
 	double borrowable() const;
 	bool canWithdraw( double amount) const;
@@ -38,7 +37,6 @@ private:
 	double minimumPaidIn;
 	double maximumPaidIn;
 	const string prepareFormattedAccountDetails() const;
-	const string prepareFormattedMiniAccountDetails(int numOfTr) const;
 };
 
 #endif

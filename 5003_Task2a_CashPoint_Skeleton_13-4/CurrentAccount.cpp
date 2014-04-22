@@ -61,34 +61,10 @@ const string CurrentAccount::prepareFormattedStatement() const
 		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
 	return ( os.str());
 }
-const string CurrentAccount::prepareFormattedMiniStatement(int numOfTr) const
-{
-	ostringstream os;
 
-	os << prepareFormattedMiniAccountDetails(numOfTr);
-	TransactionList tr = getRequestedNumberOfTransactions(numOfTr);
-	if ( ! getTransactions().size() == 0)
-		os << "\n\nLIST OF TRANSACTIONS\n" << tr.toFormattedString();	//one per line
-	else
-		os << "\n\nNO TRANSACTIONS IN BANK ACCOUNT!";
-	return ( os.str());
-}
 const string CurrentAccount::prepareFormattedAccountDetails() const
 {
 	//collect account details in string
-	ostringstream os;
-	//account details
-	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type
-	os << "\nACCOUNT NUMBER:  " << getAccountNumber();									//display account number
-	os << "\nSORT CODE:       " << getSortCode();										//display sort code
-	os << "\nCREATION DATE:   " << getCreationDate().toFormattedString();				//display creation date
-	os << fixed << setprecision(2) << setfill(' ');
-	os << "\nBALANCE:         \234" << setw(10) << getBalance();	//display balance
-	os << "\nOVERDRAFTLIMIT:  \234" << setw(10) << overdraftLimit;
-	return ( os.str());
-}
-const string CurrentAccount::prepareFormattedMiniAccountDetails(int numOfTr) const
-{
 	ostringstream os;
 	//account details
 	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type

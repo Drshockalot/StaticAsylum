@@ -44,7 +44,7 @@ public:
 
 	//other operations
 	virtual const string prepareFormattedStatement() const = 0;
-	virtual const string prepareFormattedMiniStatement(int numOfTr) const = 0;
+	virtual const void produceNMostRecentTransactions(int numOfTr, string& str, double& total);
 
     virtual void recordDeposit( double amount);
 	void addTransaction(Transaction tr);
@@ -61,7 +61,6 @@ public:
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;
 
-	const TransactionList getRequestedNumberOfTransactions(int numOfTr) const;
 	void updateBalance( double amount);
 
 	//templates
@@ -88,8 +87,6 @@ private:
 	//support functions
 	
 	virtual const string prepareFormattedAccountDetails() const = 0;
-	virtual const string prepareFormattedMiniAccountDetails(int numOfTr) const = 0;
-	
 };
 
 //---------------------------------------------------------------------------

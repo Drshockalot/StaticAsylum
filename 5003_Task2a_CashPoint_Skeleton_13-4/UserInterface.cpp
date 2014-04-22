@@ -212,7 +212,7 @@ double UserInterface::readInDepositAmount() const {
     cout << "\nAMOUNT TO DEPOSIT: \234" ;
 	return ( readInPositiveAmount());
 }
-int UserInterface::getNumberOfTransactions() const 
+int UserInterface::readInNumberOfTransactions() const 
 {
 	cout << "\nNUMBER OF TRANSACTIONS : ";
 	return ( readInPositiveAmount());
@@ -266,11 +266,13 @@ void UserInterface::showStatementOnScreen( const string& statement) const {
     cout << "\n________ END ACCOUNT STATEMENT _____";
 }
 
-void UserInterface::showMiniStatementOnScreen(const string& miniStatement) const
+void UserInterface::showMiniStatementOnScreen(const int& numOfTr, const string& str, const double& total) const
 {
 	cout << "\nPREPARING MINI STATEMENT...";
 	cout << "\n________ ACCOUNT MINI STATEMENT _____";
-	cout << miniStatement;
+	cout << "\n_______SHOWING " << numOfTr << " TRANSACTIONS\n";
+	cout << "\nCumulated transaction amount (all transactions): \234" << total << "\n";
+	cout << str;
 	cout << "\n________ END ACCOUNT MINI STATEMENT _____";
 }
 
