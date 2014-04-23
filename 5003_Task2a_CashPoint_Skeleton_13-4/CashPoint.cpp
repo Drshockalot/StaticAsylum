@@ -87,18 +87,23 @@ int CashPoint::validateCard( const string& cashCardFileName) const {
 
 int CashPoint::validateAccount( const string& bankAccountFileName) const {
 //check that the account is valid 
-//MORE WORK NEEDED: in case of transfer
     int validBankCode;
-    if ( ! canOpenFile( bankAccountFileName)) 
-		//account does not exist
-		validBankCode = UNKNOWN_ACCOUNT;
-	else
-	  	//unaccessible account (exist but not listed on card)
-		if ( ! p_theCashCard_->onCard( bankAccountFileName))     
-    		validBankCode = UNACCESSIBLE_ACCOUNT;
+	//The account is already open
+	if (p_theActiveAccount_ != nullptr)
+		if (p_theActiveAccount_->getFileName() == bankAccountFileName)
+			return ACCOUNT_ALREADY_OPEN;
+
+		if (!canOpenFile(bankAccountFileName))
+			//account does not exist
+			validBankCode = UNKNOWN_ACCOUNT;
 		else
-			//account valid (exists and accessible)
-       		validBankCode = VALID_ACCOUNT;
+			//unaccessible account (exist but not listed on card)
+			if (!p_theCashCard_->onCard(bankAccountFileName))
+				validBankCode = UNACCESSIBLE_ACCOUNT;
+			else
+				//account valid (exists and accessible)
+				validBankCode = VALID_ACCOUNT;
+	
     return validBankCode;
 }
 
@@ -113,6 +118,7 @@ void CashPoint::processOneCustomerRequests() {
     {
        	//dynamically create a bank account to store data from file
         p_theActiveAccount_ = activateBankAccount( bankAccountFileName);
+		p_theActiveAccount_->setFileName(bankAccountFileName);
 		//process all request for current card (& bank accounts)
     	processOneAccountRequests();
 		//store new state of bank account in file & free bank account memory space
@@ -376,7 +382,6 @@ void CashPoint::m6_showMiniStatement() const
 	}
 	str = p_theActiveAccount_->prepareFormattedAccountDetails() + "\n"  + str;
 	p_theUI_->showMiniStatementOnScreen(numOfTr, str, total);
-	
 }
 
 void CashPoint::m7_searchForTransactions() const

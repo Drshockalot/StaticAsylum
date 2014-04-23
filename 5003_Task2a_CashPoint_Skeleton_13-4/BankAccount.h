@@ -45,7 +45,7 @@ public:
 	//other operations
 	virtual const string prepareFormattedAccountDetails() const = 0;
 	virtual const string prepareFormattedStatement() const = 0;
-	virtual const void produceNMostRecentTransactions(int numOfTr, string& str, double& total);
+	virtual const void produceNMostRecentTransactions(int numOfTr, string& str, double& total) const;
 
     virtual void recordDeposit( double amount);
 	void addTransaction(Transaction tr);
@@ -63,6 +63,8 @@ public:
 	void storeBankAccountInFile( const string& fileName) const;
 
 	void updateBalance( double amount);
+	void setFileName(const string& fName);
+	string getFileName();
 
 	//templates
 
@@ -73,6 +75,7 @@ private:
     string accountNumber_;
     string sortCode_;
     Date   creationDate_;
+	string fileName;
 	double balance_;
     TransactionList transactions_;
 };

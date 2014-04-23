@@ -150,7 +150,7 @@ TransactionList TransactionList::getTransactionsUpToDate(const Date& date, Trans
 		}
 }
 
-TransactionList TransactionList::getMostRecentTransactions(int numOfTr)
+TransactionList TransactionList::getMostRecentTransactions(int numOfTr) const
 {
 	list<Transaction> copy(listOfTransactions_);
 	TransactionList temp;

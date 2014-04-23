@@ -30,11 +30,11 @@ public:
 	int    size() const;
 	TransactionList getAllDepositTransactions();
 	double getTotalTransactions() const;
-	TransactionList getMostRecentTransactions(int numOfTr);
+	TransactionList getMostRecentTransactions(int numOfTr) const;
 	TransactionList getTransactionsUpToDate(const Date& date, TransactionList temp);
 	void deleteTransactionsUpToDate(const Date& date);
 	void addTransaction(const Transaction tr);
-	template <typename T> TransactionList getTransactionsForAmount(const T amount) const
+	template <typename T> TransactionList produceTransactionsForAmount(const T amount) const
 	{
 		TransactionList copy(*this);
 		TransactionList temp;

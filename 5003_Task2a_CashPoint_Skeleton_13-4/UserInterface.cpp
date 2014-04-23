@@ -202,6 +202,11 @@ void UserInterface::showValidateAccountOnScreen( int validCode, const string& ac
              	 << "\nTHE ACCOUNT (NUMBER: " << accNum
              	 << " CODE: " << srtCode << ") IS NOT ACCESSIBLE WITH THIS CARD!";
             break;
+		case ACCOUNT_ALREADY_OPEN:
+			cout << "\nERROR: ACCOUNT ALREADY OPEN"
+				<< "\nTHE ACCOUNT (NUMBER: " << accNum
+				<< " CODE: " << srtCode << ") IS ALREADY OPEN ON THIS MACHINE!";
+			break;
     }
 }
 

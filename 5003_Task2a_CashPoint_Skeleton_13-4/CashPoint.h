@@ -83,7 +83,7 @@ private:
 	template <typename T> string m7a_showTransactionsForAmount(T amount) const
 	{
 		ostringstream os;
-		TransactionList results(p_theActiveAccount_->getTransactions().getTransactionsForAmount(amount));
+		TransactionList results(p_theActiveAccount_->getTransactions().produceTransactionsForAmount(amount));
 		if (!results.size() == 0)
 			os << "\n\n" << results.size() << " TRANSACTIONS FOUND\n" << results.toFormattedString();	//one per line
 		else

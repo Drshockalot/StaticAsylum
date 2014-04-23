@@ -82,7 +82,7 @@ void BankAccount::recordDeposit( double amountToDeposit) {
     updateBalance( amountToDeposit);			//increase balance_
 }
 
-void const BankAccount::produceNMostRecentTransactions(int numOfTr, string& str, double& total)
+void const BankAccount::produceNMostRecentTransactions(int numOfTr, string& str, double& total) const
 {
 	TransactionList trl = transactions_.getMostRecentTransactions(numOfTr);
 	total = trl.getTotalTransactions();
@@ -133,6 +133,17 @@ void BankAccount::setBADetails(const string& accT, const string& accN, const str
 	balance_ = bal;
 	transactions_ = tr;
 }
+
+void BankAccount::setFileName(const string& fName)
+{
+	fileName = fName;
+}
+
+string BankAccount::getFileName()
+{
+	return fileName;
+}
+
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------
