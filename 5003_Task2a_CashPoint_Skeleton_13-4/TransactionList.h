@@ -34,7 +34,7 @@ public:
 	TransactionList getTransactionsUpToDate(const Date& date, TransactionList temp);
 	void deleteTransactionsUpToDate(const Date& date);
 	void addTransaction(const Transaction tr);
-	template <typename T> TransactionList getTransactionsForAmount(const T amount)
+	template <typename T> TransactionList getTransactionsForAmount(const T amount) const
 	{
 		TransactionList copy(*this);
 		TransactionList temp;

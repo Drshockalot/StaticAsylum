@@ -573,15 +573,15 @@ void CashPoint::searchTransactions() const
 	{
 	case 1:
 		amount = p_theUI_->readInSearchAmount<double>();
-		p_theUI_->showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(amount));
+		p_theUI_->showMatchingTransactionsOnScreen(m7a_showTransactionsForAmount(amount));
 		break;
 	case 2: 
 		title = p_theUI_->readInSearchAmount<string>();
-		p_theUI_->showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(title));
+		p_theUI_->showMatchingTransactionsOnScreen(m7a_showTransactionsForAmount(title));
 		break;
 	case 3: 
 		Date date = p_theUI_->readInSearchAmount<Date>(p_theActiveAccount_->getCreationDate());
-		p_theUI_->showMatchingTransactionsOnScreen(p_theActiveAccount_->m7a_showTransactionsForAmount(date));
+		p_theUI_->showMatchingTransactionsOnScreen(m7a_showTransactionsForAmount(date));
 		break;
 	}
 }

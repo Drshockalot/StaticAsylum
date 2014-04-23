@@ -65,16 +65,7 @@ public:
 	void updateBalance( double amount);
 
 	//templates
-	template <typename T> string m7a_showTransactionsForAmount(T amount)
-	{
-		ostringstream os;
-		TransactionList results(transactions_.getTransactionsForAmount(amount));
-		if ( ! results.size() == 0)
-			os << "\n\n"<< results.size() <<" TRANSACTIONS FOUND\n" << results.toFormattedString();	//one per line
-		else
-			os << "\n\nNO TRANSACTION IN BANK ACCOUNT MATCH THE SEARCH CRITERION GIVEN!";
-		return ( os.str());
-	}
+
 
 private:
     //data items

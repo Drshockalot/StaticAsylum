@@ -47,9 +47,9 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 
 void TransactionList::deleteTransactionsUpToDate(const Date& date)
 {
-	//assert(size() != 0);
 	if(size() <= 0)
 	{
+		return;
 	}
 	else
 	{
@@ -134,24 +134,20 @@ double TransactionList::getTotalTransactions() const
 
 TransactionList TransactionList::getTransactionsUpToDate(const Date& date, TransactionList temp)
 {
-	if(temp.size() <= 0) // checks size to exit function
+	if(temp.size() <= 0)
 	{
-		TransactionList fuckyou;
-		return fuckyou;
+		TransactionList dummyTrl;
+		return dummyTrl;
 	}
 	else
-	{
 		if(temp.newestTransaction().getValue<Date>() <= date)
-		{
 			return temp;
-		}
 		else
 		{
 			temp.deleteFirstTransaction();
 			TransactionList test(getTransactionsUpToDate(date, temp));
 			return test;
 		}
-	}
 }
 
 TransactionList TransactionList::getMostRecentTransactions(int numOfTr)
