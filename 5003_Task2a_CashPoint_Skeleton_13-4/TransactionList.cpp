@@ -68,6 +68,19 @@ void TransactionList::deleteTransactionsUpToDate(const Date& date)
 	}
 }
 
+
+/*void TransactionList::deleteTransactionsUpToDate(const Date& date)
+{
+	TransactionList copy(*this);
+	while(copy.size() > 0)
+	{
+		if(copy.newestTransaction().getDate() <= date)
+			this->deleteGivenTransaction(copy.newestTransaction());
+		copy.deleteFirstTransaction();
+	}
+}*/
+
+
 int TransactionList::size() const {
     return (listOfTransactions_.size());
 }
@@ -149,6 +162,20 @@ TransactionList TransactionList::getTransactionsUpToDate(const Date& date, Trans
 			return test;
 		}
 }
+
+/*TransactionList TransactionList::getTransactionsUpToDate(const Date& date) const
+{
+	TransactionList copy(*this);
+	TransactionList temp;
+
+	while(copy.size() > 0)
+	{
+		if(copy.newestTransaction().getDate() <= date)
+			temp.addTransaction(copy.newestTransaction());
+		copy.deleteFirstTransaction();
+	}
+	return temp;
+}*/
 
 TransactionList TransactionList::getMostRecentTransactions(int numOfTr) const
 {
