@@ -38,7 +38,6 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 	else
 	{
 		Transaction firstTr(newestTransaction());
-			//TransactionList trlist( *this);
 			this->deleteFirstTransaction();
 		this->deleteGivenTransaction(tr);
 		this->addNewTransaction(firstTr);
@@ -48,11 +47,8 @@ void TransactionList::deleteGivenTransaction( const Transaction& tr) {
 void TransactionList::deleteTransactionsUpToDate(const Date& date)
 {
 	if(size() <= 0)
-	{
 		return;
-	}
 	else
-	{
 		if (newestTransaction().getValue<Date>() <= date)
 		{
 			*this = olderTransactions();
@@ -65,7 +61,6 @@ void TransactionList::deleteTransactionsUpToDate(const Date& date)
 			this->deleteTransactionsUpToDate(date);
 			this->addNewTransaction(firstTr);
 		}
-	}
 }
 
 
@@ -148,18 +143,14 @@ double TransactionList::getTotalTransactions() const
 TransactionList TransactionList::getTransactionsUpToDate(const Date& date, TransactionList temp)
 {
 	if(temp.size() <= 0)
-	{
-		TransactionList dummyTrl;
-		return dummyTrl;
-	}
+		return temp;
 	else
 		if(temp.newestTransaction().getValue<Date>() <= date)
 			return temp;
 		else
 		{
 			temp.deleteFirstTransaction();
-			TransactionList test(getTransactionsUpToDate(date, temp));
-			return test;
+			return getTransactionsUpToDate(date, temp);
 		}
 }
 

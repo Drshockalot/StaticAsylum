@@ -22,6 +22,12 @@
 
 //menu functions
 
+UserInterface* UserInterface::getInstance()
+{
+	static UserInterface instance;
+	return &instance;
+}
+
 void UserInterface::wait() const {
 	char ch;
 	cout << "\n\nPress RETURN to go back to menu\n";
@@ -398,10 +404,10 @@ void UserInterface::showNoTransactionsOnScreen() const
 void UserInterface::showSearchMenu() const
 {
 	cout << "\n___________Search Transactions_____________ ";
-	cout << "\n       1	By amount";
-	cout << "\n       2 By title";
-	cout << "\n       3	By date";
-	cout << "\n       4 Exit search";
+	cout << "\n 1 By amount";
+	cout << "\n 2 By title";
+	cout << "\n 3 By date";
+	cout << "\n 4 Exit search";
 }
 int UserInterface::readInSearchCommand() const
 {

@@ -23,10 +23,7 @@ using namespace std;
 class UserInterface {
 public:
 	//constructors & destructor
-	static UserInterface* getInstance(){
-		static UserInterface instance;
-		return &instance;
-	}
+	static UserInterface* getInstance();
 
     void	showWelcomeScreen() const;
     void	showByeScreen() const;
@@ -73,23 +70,6 @@ public:
 		cout << "\n ENTER SEARCH AMOUNT:  ";
 		cin >> amount;
 		return amount;
-		//return searchAmount;
-	}
-	template <typename T> Date readInSearchAmount(T cr) const
-	{
-		int day,month,year;
-		Date searchDate;
-		do{
-			cout << "\n ENTER VALID DATE: ";
-			cout << "\n ENTER SEARCH DAY:  ";
-			cin >> day;
-			cout << "\n ENTER SEARCH MONTH:  ";
-			cin >> month;
-			cout << "\n ENTER SEARCH YEAR:  ";
-			cin >> year;
-			searchDate = Date(day, month, year);
-		} while (!searchDate.isValidDate(cr));
-		return searchDate;
 	}
 
 	void	showMatchingTransactionsOnScreen( const string& results) const;

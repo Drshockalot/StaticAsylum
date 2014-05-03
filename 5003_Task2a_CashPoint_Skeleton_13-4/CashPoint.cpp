@@ -24,6 +24,7 @@ CashPoint::CashPoint()
 CashPoint::~CashPoint()
 {
 	assert( p_theActiveAccount_ == nullptr);
+	assert( p_theTransferAccount_ == nullptr);
 	assert( p_theCashCard_ == nullptr);
 }
 
@@ -585,7 +586,7 @@ void CashPoint::searchTransactions() const
 		p_theUI_->showMatchingTransactionsOnScreen(m7a_showTransactionsForAmount(title));
 		break;
 	case 3: 
-		Date date = p_theUI_->readInSearchAmount<Date>(p_theActiveAccount_->getCreationDate());
+		Date date = p_theUI_->readInValidDate(p_theActiveAccount_->getCreationDate());
 		p_theUI_->showMatchingTransactionsOnScreen(m7a_showTransactionsForAmount(date));
 		break;
 	}
