@@ -168,42 +168,14 @@ void CashPoint::performAccountProcessingCommand( int option) {
 
 	int menu = 0;
 
-	if(accType == "BANK")
-		menu = 0;
-	else if(accType == "CURRENT")
+	if(accType == "CURRENT")
 		menu = 1;
-	else if(accType == "SAVINGS")
-		menu = 2;
 	else if(accType == "CHILD")
 		menu = 3;
 	else if(accType == "ISA")
 		menu = 4;
 	switch(menu)
 	{
-		case 0:
-			switch ( option)
-			{
-				case 1:	m1_produceBalance();
-						break;
-				case 2: m2_withdrawFromBankAccount();
- 						break;
-				case 3:	m3_depositToBankAccount();
-						break;
-				case 4:	m4_produceStatement();
-						break;
-				case 5: m5_showAllDepositTransactions();
-						break;
-				case 6: m6_showMiniStatement();
-						break;
-				case 7: m7_searchForTransactions();
-						break;
-				case 8: m8_clearTransactionsUpToDate();
-						break;
-				case 9: m9_transferCashToAnotherAccount();
-						break;
-				default:p_theUI_->showErrorInvalidCommand();
-			}
-			break;
 		case 1:
 			switch ( option)
 			{
@@ -226,32 +198,6 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				case 9: m9_transferCashToAnotherAccount();
 						break;
 				case 10: requestOverdraftLimit();
-						break;
-				default:p_theUI_->showErrorInvalidCommand();
-			}
-			break;
-		case 2:
-			switch ( option)
-			{
-				case 1:	m1_produceBalance();
-						break;
-				case 2: m2_withdrawFromBankAccount();
- 						break;
-				case 3:	m3_depositToBankAccount();
-						break;
-				case 4:	m4_produceStatement();
-						break;
-				case 5: m5_showAllDepositTransactions();
-						break;
-				case 6: m6_showMiniStatement();
-						break;
-				case 7: m7_searchForTransactions();
-						break;
-				case 8: m8_clearTransactionsUpToDate();
-						break;
-				case 9: m9_transferCashToAnotherAccount();
-						break;
-				case 10: requestMinimumBalance();
 						break;
 				default:p_theUI_->showErrorInvalidCommand();
 			}

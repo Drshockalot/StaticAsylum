@@ -231,7 +231,7 @@ double UserInterface::readInDepositAmount() const {
 int UserInterface::readInNumberOfTransactions() const 
 {
 	cout << "\nNUMBER OF TRANSACTIONS : ";
-	return ( readInPositiveAmount());
+	return ( static_cast<int>(readInPositiveAmount()));
 }
 bool UserInterface::readInConfirmDeletion() const
 {
