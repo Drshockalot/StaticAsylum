@@ -100,9 +100,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\card_00.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="data\card_01.txt">
       <Filter>Resource Files</Filter>
     </Text>

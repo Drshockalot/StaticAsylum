@@ -100,7 +100,6 @@
     <Text Include="data\account_302_00-44.txt" />
     <Text Include="data\account_401_00-44.txt" />
     <Text Include="data\account_402_00-44.txt" />
-    <Text Include="data\card_00.txt" />
     <Text Include="data\card_01.txt" />
     <Text Include="data\card_02.txt" />
     <Text Include="data\card_03.txt" />

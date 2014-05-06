@@ -377,7 +377,7 @@ void CashPoint::m9_transferCashToAnotherAccount()
 	{
 		p_theTransferAccount_ = activateBankAccount(bankAccFileName);
 		attemptTransfer(p_theTransferAccount_);
-		releaseBankAccount(p_theTransferAccount_, bankAccFileName);
+		p_theTransferAccount_ = releaseBankAccount(p_theTransferAccount_, bankAccFileName);
 	}
 }
 

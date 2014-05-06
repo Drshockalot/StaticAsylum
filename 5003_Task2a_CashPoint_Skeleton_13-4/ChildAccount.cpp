@@ -153,7 +153,7 @@ void ChildAccount::recordTransferIn(const double& amount, const string& aAN, con
 
 void ChildAccount::recordTransferOut(const double& amount, const string& tAN, const string& tSC)
 {
-	Transaction transferTransaction( "transfer_to_ACC_" + tAN + "_" + tSC, -amount);
+	Transaction transferTransaction("transfer_to_ACC_" + tAN + "_" + tSC, -amount);
 
 	addTransaction(transferTransaction);
 	updateBalance(-amount);
