@@ -109,9 +109,6 @@
     <Text Include="data\account_102_00-44.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="data\account_103_00-44.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="data\account_301_00-44.txt">
       <Filter>Resource Files</Filter>
     </Text>
